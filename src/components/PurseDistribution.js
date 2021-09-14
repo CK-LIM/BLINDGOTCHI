@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/Button';
 // import { useHistory } from "react-router-dom";
-// import x from '../x.png'
 
 
 class PurseDistribute extends Component {
@@ -15,16 +14,11 @@ class PurseDistribute extends Component {
                 <div className="text-center">
                     <ButtonGroup>
                         {/* <Button variant="outlined" color="default" component={Link} to="/PRTokenDistribution/">Liquidity Pool</Button> */}
-                        <Button variant="outlined" color="default" component={Link} to="/PRTokenDistribution/NPXSXEMigration/">Migrate NPXSXEM</Button>
-                        <Button variant="contained" color="default" component={Link} to="/PRTokenDistribution/PurseDistribution/">Purse Distribution</Button>
+                        <Button variant="outlined" color="default" component={Link} to="/PRTokenBDL/NPXSXEMigration/">Migrate NPXSXEM</Button>
+                        <Button variant="contained" color="default" component={Link} to="/PRTokenBDL/PurseDistribution/">Purse Distribution</Button>
                     </ButtonGroup>
                 </div>
                 &nbsp;
-                {/* <a className="nav-links">
-                    <Link className="nav-links text-center"  role="button" to='/YieldFarm_BridgeEthBsc/'><li>Liquidity Pool</li></Link>
-                    <Link className="text-center"  role="button" to='/YieldFarm_BridgeEthBsc/NPXSXEMigration'><li>Migrate NPXSXEM </li></Link>
-                    <Link className="text-center"  role="button" to='/YieldFarm_BridgeEthBsc/PurseDistribution'><li>Purse Distribution </li></Link>
-                </a>&nbsp; */}
                 <h2 className="table table-borderless text-muted text-center">Distribution of $Purse to $PUNDIX holders</h2>&nbsp;
 
                 {/* ******************************************Claim PURSE ******************************************** */}
@@ -49,7 +43,7 @@ class PurseDistribute extends Component {
                     <div>
                         <label className="float-left"><b>Redeem PURSE reward</b></label>
                         <span className="float-right text-muted">
-                            <div>PURSE Balance: {window.web3.utils.fromWei(this.props.purseTokenBalance, 'Ether')}</div>
+                            <div>PURSE Balance ({this.props.first4Account}...{this.props.last4Account}) : {window.web3.utils.fromWei(this.props.purseTokenBalance, 'Ether')}</div>
                         </span>
                     </div>
                     <table className="table">
@@ -57,28 +51,42 @@ class PurseDistribute extends Component {
                             <tr>
                                 <th scope="col">Address</th>
                                 <th scope="col">Amount</th>
-                                <th scope="col">Unlock date (GMT)</th>
+                                {/* <th scope="col">Unlock date (GMT)</th> */}
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-
+                        {/* ********************************* show Token************************************ */}
+                        {/* <tbody id="claimList">
+                            <tr>
+                                <td>{this.props.account}</td>
+                                <td>{window.web3.utils.fromWei((this.props.holderInfo.distributeAmount).toString(), 'Ether')} PURSE</td>
+                                <td>
+                                    {this.props.holderInfo.isRedeem
+                                        ? <button
+                                            onClick={(event) => {
+                                                console.log("clicked...")
+                                                this.props.claim()
+                                            }}>
+                                            Claim
+                                        </button>
+                                        : <button type="button" disabled>Claimed</button>
+                                    }
+                                </td>
+                            </tr>
+                        </tbody> */}
+                        {/* ********************************* show Token old************************************ */}
                         <tbody id="claimList">
                             {this.props.holder.map((holderInfo, key) => {
                                 return (
                                     <tr key={key}>
-                                        {/* <th scope="row">{this.props.account}</th> */}
                                         <td>{this.props.account}</td>
-                                        <td>{window.web3.utils.fromWei((holderInfo.distributeAmount).toString(), 'Ether')} PURSE</td>
-                                        <td>{new Date(holderInfo.unlockTime * 1000).toString()}</td>
+                                        <td>{window.web3.utils.fromWei((holderInfo[0].distributeAmount).toString(), 'Ether')} PURSE</td>
                                         <td>
-                                            {holderInfo.isRedeem
-                                                ? <button
-                                                    iteration={holderInfo.releaseIteration.toString()}
+                                            {holderInfo[0].isRedeem
+                                                ? <button                                                                                                     
                                                     onClick={(event) => {
-                                                        console.log("clicked...")
-                                                        console.log(event.target.iteration)
-                                                        // this.props.release('1', '1')
-                                                        this.props.claim(holderInfo.releaseIteration)
+                                                        console.log("clicked...")                                          
+                                                        this.props.claim(holderInfo[1])
                                                     }}>
                                                     Claim
                                                 </button>
@@ -89,10 +97,9 @@ class PurseDistribute extends Component {
                                 )
                             })}
                         </tbody>
+
                     </table>
                 </div>
-
-
             </div>
         );
     }
