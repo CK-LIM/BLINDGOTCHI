@@ -285,40 +285,40 @@
     "absolutePath": "/C/Users/cheek/Desktop/Developer doc/Visual Studio Code/PundiX/YieldFarm_BridgeEthBsc/src/contracts/NPXSXEMigration.sol",
     "exportedSymbols": {
       "AddressUpgradeable": [
-        5748
+        5794
       ],
       "ContextUpgradeable": [
-        5792
+        5838
       ],
       "ERC1967UpgradeUpgradeable": [
-        5257
+        5303
       ],
       "ERC20Interface": [
-        1963
+        2009
       ],
       "IBeaconUpgradeable": [
-        5267
+        5313
       ],
       "Initializable": [
-        5313
+        5359
       ],
       "NPXSXEMigration": [
         1376
       ],
       "OwnableUpgradeable": [
-        4859
+        4905
       ],
       "PausableUpgradeable": [
-        5503
+        5549
       ],
       "PurseTokenUpgradable": [
-        3468
+        3514
       ],
       "StorageSlotUpgradeable": [
-        5852
+        5898
       ],
       "UUPSUpgradeable": [
-        5390
+        5436
       ]
     },
     "id": 1377,
@@ -343,7 +343,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 1377,
-        "sourceUnit": 3469,
+        "sourceUnit": 3515,
         "src": "69:36:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -577,7 +577,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+              "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
               "typeString": "contract PurseTokenUpgradable"
             },
             "typeName": {
@@ -587,13 +587,13 @@
                 "id": 1056,
                 "name": "PurseTokenUpgradable",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 3468,
+                "referencedDeclaration": 3514,
                 "src": "320:20:2"
               },
-              "referencedDeclaration": 3468,
+              "referencedDeclaration": 3514,
               "src": "320:20:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                 "typeString": "contract PurseTokenUpgradable"
               }
             },
@@ -1300,7 +1300,7 @@
                       "referencedDeclaration": 1058,
                       "src": "1078:10:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                        "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                         "typeString": "contract PurseTokenUpgradable"
                       }
                     },
@@ -1314,13 +1314,13 @@
                       "referencedDeclaration": 1102,
                       "src": "1091:11:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                        "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                         "typeString": "contract PurseTokenUpgradable"
                       }
                     },
                     "src": "1078:24:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                      "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                       "typeString": "contract PurseTokenUpgradable"
                     }
                   },
@@ -1438,7 +1438,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                    "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                     "typeString": "contract PurseTokenUpgradable"
                   },
                   "typeName": {
@@ -1448,13 +1448,13 @@
                       "id": 1100,
                       "name": "PurseTokenUpgradable",
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 3468,
+                      "referencedDeclaration": 3514,
                       "src": "928:20:2"
                     },
-                    "referencedDeclaration": 3468,
+                    "referencedDeclaration": 3514,
                     "src": "928:20:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                      "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                       "typeString": "contract PurseTokenUpgradable"
                     }
                   },
@@ -1589,7 +1589,7 @@
                         "referencedDeclaration": 1058,
                         "src": "1264:10:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                           "typeString": "contract PurseTokenUpgradable"
                         }
                       },
@@ -1600,7 +1600,7 @@
                       "lValueRequested": false,
                       "memberName": "balanceOf",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2055,
+                      "referencedDeclaration": 2101,
                       "src": "1264:20:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
@@ -2272,10 +2272,10 @@
                           "name": "ERC20Interface",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1963,
+                          "referencedDeclaration": 2009,
                           "src": "1567:14:2",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_ERC20Interface_$1963_$",
+                            "typeIdentifier": "t_type$_t_contract$_ERC20Interface_$2009_$",
                             "typeString": "type(contract ERC20Interface)"
                           }
                         },
@@ -2290,7 +2290,7 @@
                         "src": "1567:28:2",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_ERC20Interface_$1963",
+                          "typeIdentifier": "t_contract$_ERC20Interface_$2009",
                           "typeString": "contract ERC20Interface"
                         }
                       },
@@ -2301,7 +2301,7 @@
                       "lValueRequested": false,
                       "memberName": "transferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1962,
+                      "referencedDeclaration": 2008,
                       "src": "1567:41:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -2374,7 +2374,7 @@
                         "referencedDeclaration": 1058,
                         "src": "1763:10:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                           "typeString": "contract PurseTokenUpgradable"
                         }
                       },
@@ -2385,7 +2385,7 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2267,
+                      "referencedDeclaration": 2313,
                       "src": "1763:19:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -3129,7 +3129,7 @@
                               "referencedDeclaration": 1058,
                               "src": "2253:10:2",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                                "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                                 "typeString": "contract PurseTokenUpgradable"
                               }
                             },
@@ -3140,7 +3140,7 @@
                             "lValueRequested": false,
                             "memberName": "transfer",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 2267,
+                            "referencedDeclaration": 2313,
                             "src": "2253:19:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -3660,7 +3660,7 @@
                         "referencedDeclaration": 1058,
                         "src": "2476:10:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                           "typeString": "contract PurseTokenUpgradable"
                         }
                       },
@@ -3671,7 +3671,7 @@
                       "lValueRequested": false,
                       "memberName": "balanceOf",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2055,
+                      "referencedDeclaration": 2101,
                       "src": "2476:20:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
@@ -3743,7 +3743,7 @@
                         "referencedDeclaration": 1058,
                         "src": "2522:10:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                           "typeString": "contract PurseTokenUpgradable"
                         }
                       },
@@ -3754,7 +3754,7 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2267,
+                      "referencedDeclaration": 2313,
                       "src": "2522:19:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -4076,10 +4076,10 @@
                           "name": "ERC20Interface",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1963,
+                          "referencedDeclaration": 2009,
                           "src": "2744:14:2",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_ERC20Interface_$1963_$",
+                            "typeIdentifier": "t_type$_t_contract$_ERC20Interface_$2009_$",
                             "typeString": "type(contract ERC20Interface)"
                           }
                         },
@@ -4094,7 +4094,7 @@
                         "src": "2744:21:2",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_ERC20Interface_$1963",
+                          "typeIdentifier": "t_contract$_ERC20Interface_$2009",
                           "typeString": "contract ERC20Interface"
                         }
                       },
@@ -4105,7 +4105,7 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1951,
+                      "referencedDeclaration": 1997,
                       "src": "2744:30:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -4721,40 +4721,40 @@
     "absolutePath": "/C/Users/cheek/Desktop/Developer doc/Visual Studio Code/PundiX/YieldFarm_BridgeEthBsc/src/contracts/NPXSXEMigration.sol",
     "exportedSymbols": {
       "AddressUpgradeable": [
-        5748
+        5794
       ],
       "ContextUpgradeable": [
-        5792
+        5838
       ],
       "ERC1967UpgradeUpgradeable": [
-        5257
+        5303
       ],
       "ERC20Interface": [
-        1963
+        2009
       ],
       "IBeaconUpgradeable": [
-        5267
+        5313
       ],
       "Initializable": [
-        5313
+        5359
       ],
       "NPXSXEMigration": [
         1376
       ],
       "OwnableUpgradeable": [
-        4859
+        4905
       ],
       "PausableUpgradeable": [
-        5503
+        5549
       ],
       "PurseTokenUpgradable": [
-        3468
+        3514
       ],
       "StorageSlotUpgradeable": [
-        5852
+        5898
       ],
       "UUPSUpgradeable": [
-        5390
+        5436
       ]
     },
     "id": 1377,
@@ -4779,7 +4779,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 1377,
-        "sourceUnit": 3469,
+        "sourceUnit": 3515,
         "src": "69:36:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -5013,7 +5013,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+              "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
               "typeString": "contract PurseTokenUpgradable"
             },
             "typeName": {
@@ -5023,13 +5023,13 @@
                 "id": 1056,
                 "name": "PurseTokenUpgradable",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 3468,
+                "referencedDeclaration": 3514,
                 "src": "320:20:2"
               },
-              "referencedDeclaration": 3468,
+              "referencedDeclaration": 3514,
               "src": "320:20:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                 "typeString": "contract PurseTokenUpgradable"
               }
             },
@@ -5736,7 +5736,7 @@
                       "referencedDeclaration": 1058,
                       "src": "1078:10:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                        "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                         "typeString": "contract PurseTokenUpgradable"
                       }
                     },
@@ -5750,13 +5750,13 @@
                       "referencedDeclaration": 1102,
                       "src": "1091:11:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                        "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                         "typeString": "contract PurseTokenUpgradable"
                       }
                     },
                     "src": "1078:24:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                      "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                       "typeString": "contract PurseTokenUpgradable"
                     }
                   },
@@ -5874,7 +5874,7 @@
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                    "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                     "typeString": "contract PurseTokenUpgradable"
                   },
                   "typeName": {
@@ -5884,13 +5884,13 @@
                       "id": 1100,
                       "name": "PurseTokenUpgradable",
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 3468,
+                      "referencedDeclaration": 3514,
                       "src": "928:20:2"
                     },
-                    "referencedDeclaration": 3468,
+                    "referencedDeclaration": 3514,
                     "src": "928:20:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                      "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                       "typeString": "contract PurseTokenUpgradable"
                     }
                   },
@@ -6025,7 +6025,7 @@
                         "referencedDeclaration": 1058,
                         "src": "1264:10:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                           "typeString": "contract PurseTokenUpgradable"
                         }
                       },
@@ -6036,7 +6036,7 @@
                       "lValueRequested": false,
                       "memberName": "balanceOf",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2055,
+                      "referencedDeclaration": 2101,
                       "src": "1264:20:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
@@ -6708,10 +6708,10 @@
                           "name": "ERC20Interface",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1963,
+                          "referencedDeclaration": 2009,
                           "src": "1567:14:2",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_ERC20Interface_$1963_$",
+                            "typeIdentifier": "t_type$_t_contract$_ERC20Interface_$2009_$",
                             "typeString": "type(contract ERC20Interface)"
                           }
                         },
@@ -6726,7 +6726,7 @@
                         "src": "1567:28:2",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_ERC20Interface_$1963",
+                          "typeIdentifier": "t_contract$_ERC20Interface_$2009",
                           "typeString": "contract ERC20Interface"
                         }
                       },
@@ -6737,7 +6737,7 @@
                       "lValueRequested": false,
                       "memberName": "transferFrom",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1962,
+                      "referencedDeclaration": 2008,
                       "src": "1567:41:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -6810,7 +6810,7 @@
                         "referencedDeclaration": 1058,
                         "src": "1763:10:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                           "typeString": "contract PurseTokenUpgradable"
                         }
                       },
@@ -6821,7 +6821,7 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2267,
+                      "referencedDeclaration": 2313,
                       "src": "1763:19:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -7565,7 +7565,7 @@
                               "referencedDeclaration": 1058,
                               "src": "2253:10:2",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                                "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                                 "typeString": "contract PurseTokenUpgradable"
                               }
                             },
@@ -7576,7 +7576,7 @@
                             "lValueRequested": false,
                             "memberName": "transfer",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 2267,
+                            "referencedDeclaration": 2313,
                             "src": "2253:19:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -8096,7 +8096,7 @@
                         "referencedDeclaration": 1058,
                         "src": "2476:10:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                           "typeString": "contract PurseTokenUpgradable"
                         }
                       },
@@ -8107,7 +8107,7 @@
                       "lValueRequested": false,
                       "memberName": "balanceOf",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2055,
+                      "referencedDeclaration": 2101,
                       "src": "2476:20:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
@@ -8179,7 +8179,7 @@
                         "referencedDeclaration": 1058,
                         "src": "2522:10:2",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3468",
+                          "typeIdentifier": "t_contract$_PurseTokenUpgradable_$3514",
                           "typeString": "contract PurseTokenUpgradable"
                         }
                       },
@@ -8190,7 +8190,7 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 2267,
+                      "referencedDeclaration": 2313,
                       "src": "2522:19:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -8512,10 +8512,10 @@
                           "name": "ERC20Interface",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1963,
+                          "referencedDeclaration": 2009,
                           "src": "2744:14:2",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_ERC20Interface_$1963_$",
+                            "typeIdentifier": "t_type$_t_contract$_ERC20Interface_$2009_$",
                             "typeString": "type(contract ERC20Interface)"
                           }
                         },
@@ -8530,7 +8530,7 @@
                         "src": "2744:21:2",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_ERC20Interface_$1963",
+                          "typeIdentifier": "t_contract$_ERC20Interface_$2009",
                           "typeString": "contract ERC20Interface"
                         }
                       },
@@ -8541,7 +8541,7 @@
                       "lValueRequested": false,
                       "memberName": "transfer",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1951,
+                      "referencedDeclaration": 1997,
                       "src": "2744:30:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -9193,12 +9193,12 @@
         }
       },
       "links": {},
-      "address": "0x50441b8692123Ee26DA838E74812213Af5B464E5",
-      "transactionHash": "0x79f39c11f5604901dd53cee665421c11dbf3ee89bc04a60c2b4c13cadc9a0273"
+      "address": "0xA774bDADbef27D5fc05995C1240bCab0B1f57d27",
+      "transactionHash": "0x8bbeb9aceefb4f08776c59a38ca5e45bb19d9aff23fcdf0a49193f93696d906f"
     }
   },
   "schemaVersion": "3.2.3",
-  "updatedAt": "2021-09-15T11:34:14.122Z",
+  "updatedAt": "2021-09-15T19:19:26.598Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

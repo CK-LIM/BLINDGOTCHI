@@ -35,6 +35,11 @@
       "address": "0x1493AcaE0396149864a08be867cA63536b91c75f",
       "txHash": "0xcf3edec86acab33c9f4035dea751c50c345bb585550830c6d33e1c3ad78af0c8",
       "kind": "uups"
+    },
+    {
+      "address": "0x0081FDCe169e81E082805bE405547eE82519Fb0c",
+      "txHash": "0xfeb6f1b71d39d10c13f0edcade40ab27f38d9a7cbc8aaacdd8f8dce5851aa97b",
+      "kind": "uups"
     }
   ],
   "impls": {
@@ -1991,7 +1996,7 @@
           {
             "contract": "PurseTokenUpgradable",
             "label": "accAmount",
-            "type": "t_mapping(t_address,t_struct(AccAmount)2083_storage)",
+            "type": "t_mapping(t_address,t_struct(AccAmount)2129_storage)",
             "src": "..\\..\\..\\..\\..\\..\\..\\..\\..\\C\\Users\\cheek\\Desktop\\Developer doc\\Visual Studio Code\\PundiX\\YieldFarm_BridgeEthBsc\\src\\contracts\\PurseTokenUpgradable.sol:55"
           }
         ],
@@ -2023,10 +2028,10 @@
           "t_bool": {
             "label": "bool"
           },
-          "t_mapping(t_address,t_struct(AccAmount)2083_storage)": {
+          "t_mapping(t_address,t_struct(AccAmount)2129_storage)": {
             "label": "mapping(address => struct PurseTokenUpgradable.AccAmount)"
           },
-          "t_struct(AccAmount)2083_storage": {
+          "t_struct(AccAmount)2129_storage": {
             "label": "struct PurseTokenUpgradable.AccAmount",
             "members": [
               {

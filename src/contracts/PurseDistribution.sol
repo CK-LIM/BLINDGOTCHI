@@ -5,20 +5,21 @@ pragma solidity ^0.8.0;
 import "./PurseTokenUpgradable.sol";
 
 contract PurseDistribution {
-    event claimReward(address indexed owner, uint256 amount, uint32 indexed Iteration);
-    event claimAllReward(address indexed owner, uint256 amount, uint32 Iteration_End);
-    event addHolder(address indexed sender, uint32 iteration);
-    event updateHolder(address indexed sender, uint32 iteration);
+    event claimReward(address indexed owner, uint256 amount, uint256 indexed Iteration);
+    event claimAllReward(address indexed owner, uint256 amount, uint256 Iteration_End);
+    event addHolder(address indexed sender, uint256 iteration);
+    event updateHolder(address indexed sender, uint256 iteration);
     
     string public name = "Purse Distribution";
     PurseTokenUpgradable public purseToken;
     address public owner;
     uint256 public constant validDuration = 91 days;
+    uint256 public endDistribution;
     uint256 internal distributionStart;
+    bool public isClaimStart;
     mapping(address => bool) public isOwner;
-    mapping(address => mapping(uint32 => holderInfo)) public holder;   //address->index   
-    mapping(uint32 => uint256) public numOfHolder;
-
+    mapping(address => mapping(uint256 => holderInfo)) public holder;   //address->index   
+    mapping(uint256 => uint256) public numOfHolder;
 
     struct holderInfo {
         uint256 distributeAmount;
@@ -37,9 +38,7 @@ contract PurseDistribution {
         distributionStart = block.timestamp;
     }
 
-    function addHolderInfo(address[] calldata _holder, uint256[] calldata _amount , uint32 iteration) public onlyOwner {
-        uint256 end = distributionStart + validDuration;
-        require(block.timestamp <= end, "Distribution window over");
+    function addHolderInfo(address[] calldata _holder, uint256[] calldata _amount , uint256 iteration) public onlyOwner {
         uint256 i = 0;
         require(_holder.length == _amount.length, "length difference");
         for (i; i < _holder.length; i++) {
@@ -51,9 +50,7 @@ contract PurseDistribution {
         emit addHolder(msg.sender, iteration);
     }
 
-    function updateHolderInfo(address[] calldata _holder, uint256[] calldata _amount , uint32 iteration) public onlyOwner {
-        uint256 end = distributionStart + validDuration;
-        require(block.timestamp <= end, "Distribution window over");
+    function updateHolderInfo(address[] calldata _holder, uint256[] calldata _amount , uint256 iteration) public onlyOwner {
         uint256 i = 0;
         require(_holder.length == _amount.length, "length difference");
         for (i; i < _holder.length; i++) {
@@ -65,10 +62,25 @@ contract PurseDistribution {
         emit updateHolder(msg.sender, iteration);
     }
 
+    function startClaim() public onlyOwner {
+        endDistribution = block.timestamp + validDuration;
+        isClaimStart = true;
+    }
+
+    function checkData(address[] calldata _holder, uint256[] calldata _amount, uint256 iteration) public view returns (uint256, bool) {
+        uint256 i = 0;
+        for (i; i < _holder.length; i++) {
+            if (holder[_holder[i]][iteration].distributeAmount != _amount[i]) {
+                return (i, false);
+            }
+        }
+        return (i, true);        
+    }
+
     // Notice Transfers tokens held by timelock to beneficiary.
-    function claim(uint32 iteration) public {
-        uint256 end = distributionStart + validDuration;
-        require(block.timestamp <= end, "Distribution window over");
+    function claim(uint256 iteration) public {
+        require (isClaimStart == true);
+        require(block.timestamp < endDistribution, "Distribution window over");
         require(holder[msg.sender][iteration].isRedeem == false, 'have been redeem');
 
         holder[msg.sender][iteration].isRedeem = true;
@@ -77,11 +89,11 @@ contract PurseDistribution {
         emit claimReward(msg.sender, claimAmount, iteration);
     }
 
-    function claimAll(uint32 iteration_end) public {
-        uint256 end = distributionStart + validDuration;
-        require(block.timestamp <= end, "Distribution window over");
+    function claimAll(uint256 iteration_end) public {
+        require (isClaimStart == true);
+        require(block.timestamp < endDistribution, "Distribution window over");
         uint256 claimAmount = 0;
-        for (uint32 i = 0; i <= iteration_end; i++) {
+        for (uint256 i = 0; i <= iteration_end; i++) {
                 if (holder[msg.sender][i].isRedeem == false) {
                     require(holder[msg.sender][i].isRedeem == false, 'have been redeem');
                     holder[msg.sender][i].isRedeem = true;
