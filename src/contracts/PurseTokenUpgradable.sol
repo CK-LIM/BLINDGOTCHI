@@ -38,7 +38,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
     uint256 public _totalSupply;
     
     event Transfer(address indexed _from, address indexed _to, uint256 _value);
-    event Burn(address indexed _from, address indexed _to, uint256 _value);
+    event Burn(address indexed _from, uint256 _value);
     event Mint(address indexed _from, address indexed _to, uint256 _value);
     event Approval(address indexed _owner, address indexed _spender, uint256 _value);
 
@@ -95,7 +95,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         require(_value >= 0);
         require(balanceOf[msg.sender] >= _value);
         if (isWhitelistedTo[_to] || isWhitelistedFrom[msg.sender]) {
-            updateAccumlateBalanceTransaction(msg.sender, _to); 
+            updateAccumulateBalanceTransaction(msg.sender, _to); 
             balanceOf[msg.sender] -= _value;
             balanceOf[_to] += _value;
             
@@ -103,7 +103,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
             emit Transfer(msg.sender, _to, _value);
             return true;
         } else {
-            updateAccumlateBalanceTransaction(msg.sender, _to);
+            updateAccumulateBalanceTransaction(msg.sender, _to);
             uint256 transferValue = _partialBurn(_value, msg.sender);
             balanceOf[msg.sender] -= transferValue;
             balanceOf[_to] += transferValue;
@@ -134,7 +134,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         }
     }
     
-    function updateAccumlateBalanceTransaction(address _from, address _to) private {
+    function updateAccumulateBalanceTransaction(address _from, address _to) private {
         updateAccumulateBalance(_from, block.timestamp);
         updateAccumulateBalance(_to, block.timestamp);
     }
@@ -192,7 +192,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         require(_value <= allowance[_from][msg.sender]);
         if (isWhitelistedTo[_to] || isWhitelistedFrom[msg.sender]) {
             allowance[_from][msg.sender] -= _value;
-            updateAccumlateBalanceTransaction(_from, _to);
+            updateAccumulateBalanceTransaction(_from, _to);
             balanceOf[_from] -= _value;
             balanceOf[_to] += _value;
             
@@ -200,7 +200,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
             return true;
         } else {
             allowance[_from][msg.sender] -= _value;
-            updateAccumlateBalanceTransaction(_from, _to);
+            updateAccumulateBalanceTransaction(_from, _to);
             uint256 transferValue = _partialBurn(_value, _from);
             balanceOf[_from] -= transferValue;
             balanceOf[_to] += transferValue;
@@ -212,20 +212,20 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
 
     function mint(address _account, uint256 _amount) public whenNotPaused onlyAdmin {
         require(_account != address(0));
-        updateAccumlateBalanceTransaction(msg.sender, _account); 
+        updateAccumulateBalance(_account, block.timestamp); 
         balanceOf[_account] += _amount;
 
         totalSupply += _amount;
         emit Mint(address(0), _account, _amount);
     }
 
-    function burn(address _account, uint256 _amount) public whenNotPaused onlyAdmin {
-        require(_account != address(0));
-        require(balanceOf[_account] >= _amount);
-        updateAccumlateBalanceTransaction(msg.sender, _account); 
-        balanceOf[_account] -= _amount;
+    function burn(uint256 _amount) public whenNotPaused {
+        require(_amount != 0);
+        require(balanceOf[msg.sender] >= _amount);
+        updateAccumulateBalance(msg.sender, block.timestamp); 
+        balanceOf[msg.sender] -= _amount;
         totalSupply -= _amount;
-        emit Burn(_account, address(0), _amount);
+        emit Burn(msg.sender, _amount);
     }
 
     function _partialBurn(uint256 _amount, address _from)
@@ -290,11 +290,11 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         balanceOf[_account] -= _disAmount;
 
         totalSupply -= _burnAmount;
-        updateAccumlateBalanceTransaction(disPool, liqPool); 
+        updateAccumulateBalanceTransaction(disPool, liqPool); 
         balanceOf[liqPool] += _liqAmount;
         balanceOf[disPool] += _disAmount;
 
-        emit Burn(_account, address(0), _burnAmount);
+        emit Burn(_account, _burnAmount);
         emit Transfer(msg.sender, liqPool, _liqAmount);
         emit Transfer(msg.sender, disPool, _disAmount);
     }
@@ -352,7 +352,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
     function transferERCToken(address token, uint256 amount, address _to) public whenNotPaused onlyOwner{
         require(_to != address(0));
         if (token == address(this)) {
-            updateAccumlateBalanceTransaction(address(this), _to);
+            updateAccumulateBalanceTransaction(address(this), _to);
             ERC20Interface(token).transfer(_to, amount);
         } else {
             ERC20Interface(token).transfer(_to, amount);          
@@ -395,7 +395,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         liqPercent = _liqPercent;
         disPercent = _disPercent;
         admins = [msg.sender];
-        _averageInterval = 1 minutes;
+        _averageInterval = 1 minutes;       // update to 1 days in mainnet(prod)
         __Pausable_init();
         __Ownable_init();
         __UUPSUpgradeable_init();

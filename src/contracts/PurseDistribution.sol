@@ -43,9 +43,11 @@ contract PurseDistribution {
         uint256 i = 0;
         require(_holder.length == _amount.length, "length difference");
         for (i; i < _holder.length; i++) {
-            holder[_holder[i]][iteration] = holderInfo(_amount[i], true);
+            if (_amount[i] > 0 && holder[_holder[i]][iteration].distributeAmount == 0) {
+                holder[_holder[i]][iteration] = holderInfo(_amount[i], false);
+                numOfHolder[iteration] += 1;
+            }
         }
-        numOfHolder[iteration] += _holder.length;
         emit addHolder(msg.sender, iteration);
     }
 
@@ -55,7 +57,10 @@ contract PurseDistribution {
         uint256 i = 0;
         require(_holder.length == _amount.length, "length difference");
         for (i; i < _holder.length; i++) {
-            holder[_holder[i]][iteration] = holderInfo(_amount[i], true);
+            if (holder[_holder[i]][iteration].isRedeem == true) {
+                continue;
+            }
+            holder[_holder[i]][iteration] = holderInfo(_amount[i], false);
         }
         emit updateHolder(msg.sender, iteration);
     }
@@ -64,9 +69,9 @@ contract PurseDistribution {
     function claim(uint32 iteration) public {
         uint256 end = distributionStart + validDuration;
         require(block.timestamp <= end, "Distribution window over");
-        require(holder[msg.sender][iteration].isRedeem == true, 'have been redeem');
+        require(holder[msg.sender][iteration].isRedeem == false, 'have been redeem');
 
-        holder[msg.sender][iteration].isRedeem = false;
+        holder[msg.sender][iteration].isRedeem = true;
         uint256 claimAmount = holder[msg.sender][iteration].distributeAmount;
         purseToken.transfer(msg.sender, claimAmount);
         emit claimReward(msg.sender, claimAmount, iteration);
@@ -77,9 +82,9 @@ contract PurseDistribution {
         require(block.timestamp <= end, "Distribution window over");
         uint256 claimAmount = 0;
         for (uint32 i = 0; i <= iteration_end; i++) {
-                if (holder[msg.sender][i].isRedeem == true) {
-                    require(holder[msg.sender][i].isRedeem == true, 'have been redeem');
-                    holder[msg.sender][i].isRedeem = false;
+                if (holder[msg.sender][i].isRedeem == false) {
+                    require(holder[msg.sender][i].isRedeem == false, 'have been redeem');
+                    holder[msg.sender][i].isRedeem = true;
                     uint256 holderAmount = holder[msg.sender][i].distributeAmount;
                     claimAmount += holderAmount;                    
                 }
