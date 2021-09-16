@@ -59,10 +59,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         uint256 lastUpdateTime;
     }
 
-    function transfer(address _to, uint256 _value)
-        public
-        whenNotPaused 
-        returns (bool success)
+    function transfer(address _to, uint256 _value) public whenNotPaused returns (bool success)
     {
         require(_value >= 0);
         require(balanceOf[msg.sender] >= _value);
@@ -84,6 +81,55 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
             emit Transfer(msg.sender, _to, transferValue);
             return true;
         }
+    }
+    
+    function approve(address _spender, uint256 _value) public whenNotPaused returns (bool success)
+    {
+        allowance[msg.sender][_spender] = _value;
+        emit Approval(msg.sender, _spender, _value);
+        return true;
+    }
+
+    function transferFrom(address _from, address _to, uint256 _value) public whenNotPaused returns (bool success) {
+        require(_value >= 0);
+        require(_value <= balanceOf[_from]);
+        require(_value <= allowance[_from][msg.sender]);
+        if (isWhitelistedTo[_to] || isWhitelistedFrom[msg.sender]) {
+            allowance[_from][msg.sender] -= _value;
+            updateAccumulateBalanceTransaction(_from, _to);
+            balanceOf[_from] -= _value;
+            balanceOf[_to] += _value;
+            
+            emit Transfer(_from, _to, _value);
+            return true;
+        } else {
+            allowance[_from][msg.sender] -= _value;
+            updateAccumulateBalanceTransaction(_from, _to);
+            uint256 transferValue = _partialBurn(_value, _from);
+            balanceOf[_from] -= transferValue;
+            balanceOf[_to] += transferValue;
+
+            emit Transfer(_from, _to, transferValue);
+            return true;
+        }
+    }
+
+    function mint(address _account, uint256 _amount) public whenNotPaused onlyAdmin {
+        require(_account != address(0));
+        updateAccumulateBalance(_account, block.timestamp); 
+        balanceOf[_account] += _amount;
+
+        totalSupply += _amount;
+        emit Mint(address(0), _account, _amount);
+    }
+
+    function burn(uint256 _amount) public whenNotPaused {
+        require(_amount != 0);
+        require(balanceOf[msg.sender] >= _amount);
+        updateAccumulateBalance(msg.sender, block.timestamp); 
+        balanceOf[msg.sender] -= _amount;
+        totalSupply -= _amount;
+        emit Burn(msg.sender, _amount);
     }
     
     function updateAccumulateBalance(address _holder, uint256 _updateTime) private {
@@ -143,67 +189,8 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         _percentageDistribute = _percentage;
         _monthlyDistributePr = _monthlyDisPr;
     }
-    
-    function approve(address _spender, uint256 _value)
-        public
-        whenNotPaused 
-        returns (bool success)
-    {
-        allowance[msg.sender][_spender] = _value;
-        emit Approval(msg.sender, _spender, _value);
-        return true;
-    }
 
-    function transferFrom(
-        address _from,
-        address _to,
-        uint256 _value
-    ) public whenNotPaused returns (bool success) {
-        require(_value >= 0);
-        require(_value <= balanceOf[_from]);
-        require(_value <= allowance[_from][msg.sender]);
-        if (isWhitelistedTo[_to] || isWhitelistedFrom[msg.sender]) {
-            allowance[_from][msg.sender] -= _value;
-            updateAccumulateBalanceTransaction(_from, _to);
-            balanceOf[_from] -= _value;
-            balanceOf[_to] += _value;
-            
-            emit Transfer(_from, _to, _value);
-            return true;
-        } else {
-            allowance[_from][msg.sender] -= _value;
-            updateAccumulateBalanceTransaction(_from, _to);
-            uint256 transferValue = _partialBurn(_value, _from);
-            balanceOf[_from] -= transferValue;
-            balanceOf[_to] += transferValue;
-
-            emit Transfer(_from, _to, transferValue);
-            return true;
-        }
-    }
-
-    function mint(address _account, uint256 _amount) public whenNotPaused onlyAdmin {
-        require(_account != address(0));
-        updateAccumulateBalance(_account, block.timestamp); 
-        balanceOf[_account] += _amount;
-
-        totalSupply += _amount;
-        emit Mint(address(0), _account, _amount);
-    }
-
-    function burn(uint256 _amount) public whenNotPaused {
-        require(_amount != 0);
-        require(balanceOf[msg.sender] >= _amount);
-        updateAccumulateBalance(msg.sender, block.timestamp); 
-        balanceOf[msg.sender] -= _amount;
-        totalSupply -= _amount;
-        emit Burn(msg.sender, _amount);
-    }
-
-    function _partialBurn(uint256 _amount, address _from)
-        internal
-        returns (uint256)
-    {
+    function _partialBurn(uint256 _amount, address _from) internal returns (uint256) {
         uint256 transferAmount = 0;
         uint256 burnAmount;
         uint256 liqAmount;
@@ -222,12 +209,24 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         return transferAmount;
     }
 
-    function burnPrivate(
-        address _account,
-        uint256 _burnAmount,
-        uint256 _liqAmount,
-        uint256 _disAmount
-    ) private {
+    function _calculateDeductAmount(uint256 _amount) internal view returns (uint256, uint256, uint256) {
+        uint256 burnAmount;
+        uint256 liqAmount;
+        uint256 disAmount;
+
+        if (totalSupply > minimumSupply) {
+            burnAmount = (_amount * burnPercent) / 100;
+            liqAmount = (_amount * liqPercent) / 100;
+            disAmount = (_amount * disPercent) / 100;
+            uint256 availableBurn = totalSupply - minimumSupply;
+            if (burnAmount > availableBurn) {
+                burnAmount = availableBurn;
+            }
+        }
+        return (burnAmount, liqAmount, disAmount);
+    }
+
+    function burnPrivate( address _account, uint256 _burnAmount, uint256 _liqAmount, uint256 _disAmount) private {
         require(_account != address(0));
         uint256 accountBalance = balanceOf[_account];
         uint256 deductAmount = _burnAmount + _liqAmount + _disAmount;
@@ -245,60 +244,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         emit Transfer(msg.sender, liqPool, _liqAmount);
         emit Transfer(msg.sender, disPool, _disAmount);
     }
-
-    function _calculateDeductAmount(uint256 _amount)
-        internal
-        view
-        returns (
-            uint256,
-            uint256,
-            uint256
-        )
-    {
-        uint256 burnAmount;
-        uint256 liqAmount;
-        uint256 disAmount;
-
-        if (totalSupply > minimumSupply) {
-            burnAmount = (_amount * burnPercent) / 100;
-            liqAmount = (_amount * liqPercent) / 100;
-            disAmount = (_amount * disPercent) / 100;
-            uint256 availableBurn = totalSupply - minimumSupply;
-            if (burnAmount > availableBurn) {
-                burnAmount = availableBurn;
-            }
-        }
-        return (burnAmount, liqAmount, disAmount);
-    }
-
-        function setWhitelistedTo(address newWhitelist) public onlyOwner {
-        // require(newWhitelist != address(0));
-        require(!isWhitelistedTo[newWhitelist]);
-
-        isWhitelistedTo[newWhitelist] = true;
-    }
-
-    function removeWhitelistedTo(address newWhitelist) public onlyOwner {
-        // require(newWhitelist != address(0));
-        require(isWhitelistedTo[newWhitelist]);
-
-        isWhitelistedTo[newWhitelist] = false;
-    }
-
-    function setWhitelistedFrom(address newWhitelist) public onlyOwner {
-        // require(newWhitelist != address(0));
-        require(!isWhitelistedFrom[newWhitelist]);
-
-        isWhitelistedFrom[newWhitelist] = true;
-    }
-
-    function removeWhitelistedFrom(address newWhitelist) public onlyOwner {
-        // require(newWhitelist != address(0));
-        require(isWhitelistedFrom[newWhitelist]);
-
-        isWhitelistedFrom[newWhitelist] = false;
-    }
-
+    
     function updateLPoolAdd(address _newLPool) public onlyOwner {
         // require(_newLPool != address(0));
         require(_newLPool != liqPool);
@@ -365,6 +311,34 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
 
     function unpause() public whenPaused onlyOwner {
         _unpause();
+    }
+    
+    function setWhitelistedTo(address newWhitelist) public onlyOwner {
+        // require(newWhitelist != address(0));
+        require(!isWhitelistedTo[newWhitelist]);
+
+        isWhitelistedTo[newWhitelist] = true;
+    }
+
+    function removeWhitelistedTo(address newWhitelist) public onlyOwner {
+        // require(newWhitelist != address(0));
+        require(isWhitelistedTo[newWhitelist]);
+
+        isWhitelistedTo[newWhitelist] = false;
+    }
+
+    function setWhitelistedFrom(address newWhitelist) public onlyOwner {
+        // require(newWhitelist != address(0));
+        require(!isWhitelistedFrom[newWhitelist]);
+
+        isWhitelistedFrom[newWhitelist] = true;
+    }
+
+    function removeWhitelistedFrom(address newWhitelist) public onlyOwner {
+        // require(newWhitelist != address(0));
+        require(isWhitelistedFrom[newWhitelist]);
+
+        isWhitelistedFrom[newWhitelist] = false;
     }
 
     function _authorizeUpgrade(address) internal override onlyOwner {}
