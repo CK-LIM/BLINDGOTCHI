@@ -17,7 +17,7 @@ contract PurseDistribution {
     uint256 public endDistribution;
     uint256 internal distributionStart;
     bool public isClaimStart;
-    mapping(address => bool) public isOwner;
+
     mapping(address => mapping(uint256 => holderInfo)) public holder;   //address->index   
     mapping(uint256 => uint256) public numOfHolder;
 
@@ -27,13 +27,12 @@ contract PurseDistribution {
     }
     
     modifier onlyOwner() {
-        require(isOwner[msg.sender], "not owner");
+        require(msg.sender == owner, "not owner");
         _;
     }
 
     constructor(PurseTokenUpgradable _purseToken) {
         purseToken = _purseToken;
-        isOwner[msg.sender] = true;
         owner = msg.sender;
         distributionStart = block.timestamp;
     }
@@ -121,7 +120,6 @@ contract PurseDistribution {
     function updateOwner(address _owner) public onlyOwner{
         require(_owner != address(0), "not valid address");
         require(_owner != owner, "same owner address");
-        isOwner[_owner] = true;
         owner = _owner;
     } 
 }

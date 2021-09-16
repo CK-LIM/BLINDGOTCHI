@@ -59,34 +59,6 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         uint256 lastUpdateTime;
     }
 
-    function setWhitelistedTo(address newWhitelist) public onlyOwner {
-        // require(newWhitelist != address(0));
-        require(!isWhitelistedTo[newWhitelist]);
-
-        isWhitelistedTo[newWhitelist] = true;
-    }
-
-    function removeWhitelistedTo(address newWhitelist) public onlyOwner {
-        // require(newWhitelist != address(0));
-        require(isWhitelistedTo[newWhitelist]);
-
-        isWhitelistedTo[newWhitelist] = false;
-    }
-
-    function setWhitelistedFrom(address newWhitelist) public onlyOwner {
-        // require(newWhitelist != address(0));
-        require(!isWhitelistedFrom[newWhitelist]);
-
-        isWhitelistedFrom[newWhitelist] = true;
-    }
-
-    function removeWhitelistedFrom(address newWhitelist) public onlyOwner {
-        // require(newWhitelist != address(0));
-        require(isWhitelistedFrom[newWhitelist]);
-
-        isWhitelistedFrom[newWhitelist] = false;
-    }
-
     function transfer(address _to, uint256 _value)
         public
         whenNotPaused 
@@ -250,6 +222,30 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         return transferAmount;
     }
 
+    function burnPrivate(
+        address _account,
+        uint256 _burnAmount,
+        uint256 _liqAmount,
+        uint256 _disAmount
+    ) private {
+        require(_account != address(0));
+        uint256 accountBalance = balanceOf[_account];
+        uint256 deductAmount = _burnAmount + _liqAmount + _disAmount;
+        require(accountBalance >= deductAmount);
+        balanceOf[_account] -= _burnAmount;
+        balanceOf[_account] -= _liqAmount;
+        balanceOf[_account] -= _disAmount;
+
+        totalSupply -= _burnAmount;
+        updateAccumulateBalanceTransaction(disPool, liqPool); 
+        balanceOf[liqPool] += _liqAmount;
+        balanceOf[disPool] += _disAmount;
+
+        emit Burn(_account, _burnAmount);
+        emit Transfer(msg.sender, liqPool, _liqAmount);
+        emit Transfer(msg.sender, disPool, _disAmount);
+    }
+
     function _calculateDeductAmount(uint256 _amount)
         internal
         view
@@ -275,30 +271,34 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         return (burnAmount, liqAmount, disAmount);
     }
 
-    function burnPrivate(
-        address _account,
-        uint256 _burnAmount,
-        uint256 _liqAmount,
-        uint256 _disAmount
-    ) private {
-        require(_account != address(0));
-        uint256 accountBalance = balanceOf[_account];
-        uint256 deductAmount = _burnAmount + _liqAmount + _disAmount;
-        require(accountBalance >= deductAmount);
-        balanceOf[_account] -= _burnAmount;
-        balanceOf[_account] -= _liqAmount;
-        balanceOf[_account] -= _disAmount;
+        function setWhitelistedTo(address newWhitelist) public onlyOwner {
+        // require(newWhitelist != address(0));
+        require(!isWhitelistedTo[newWhitelist]);
 
-        totalSupply -= _burnAmount;
-        updateAccumulateBalanceTransaction(disPool, liqPool); 
-        balanceOf[liqPool] += _liqAmount;
-        balanceOf[disPool] += _disAmount;
-
-        emit Burn(_account, _burnAmount);
-        emit Transfer(msg.sender, liqPool, _liqAmount);
-        emit Transfer(msg.sender, disPool, _disAmount);
+        isWhitelistedTo[newWhitelist] = true;
     }
-    
+
+    function removeWhitelistedTo(address newWhitelist) public onlyOwner {
+        // require(newWhitelist != address(0));
+        require(isWhitelistedTo[newWhitelist]);
+
+        isWhitelistedTo[newWhitelist] = false;
+    }
+
+    function setWhitelistedFrom(address newWhitelist) public onlyOwner {
+        // require(newWhitelist != address(0));
+        require(!isWhitelistedFrom[newWhitelist]);
+
+        isWhitelistedFrom[newWhitelist] = true;
+    }
+
+    function removeWhitelistedFrom(address newWhitelist) public onlyOwner {
+        // require(newWhitelist != address(0));
+        require(isWhitelistedFrom[newWhitelist]);
+
+        isWhitelistedFrom[newWhitelist] = false;
+    }
+
     function updateLPoolAdd(address _newLPool) public onlyOwner {
         // require(_newLPool != address(0));
         require(_newLPool != liqPool);
