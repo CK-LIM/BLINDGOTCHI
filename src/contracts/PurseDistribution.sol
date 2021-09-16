@@ -61,9 +61,13 @@ contract PurseDistribution {
         emit updateHolder(msg.sender, iteration);
     }
 
-    function startClaim() public onlyOwner {
-        endDistribution = block.timestamp + validDuration;
-        isClaimStart = true;
+    function startClaim(bool check) public onlyOwner {
+        if (check) {
+            endDistribution = block.timestamp + validDuration;
+            isClaimStart = true;
+        } else {
+            isClaimStart = false;
+        }
     }
 
     function checkData(address[] calldata _holder, uint256[] calldata _amount, uint256 iteration) public view returns (uint256, bool) {
