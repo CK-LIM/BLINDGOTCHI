@@ -83,14 +83,15 @@ class PurseDistribute extends Component {
                                         <td>{window.web3.utils.fromWei((holderInfo[0].distributeAmount).toString(), 'Ether')} PURSE</td>
                                         <td>
                                             {holderInfo[0].isRedeem
-                                                ? <button                                                                                                     
-                                                    onClick={(event) => {
-                                                        console.log("clicked...")                                          
-                                                        this.props.claim(holderInfo[1])
-                                                    }}>
-                                                    Claim
-                                                </button>
-                                                : <button type="button" disabled>Claimed</button>
+                                                ?
+                                                <button type="button" disabled>Claimed</button>                                                 
+                                                : <button                                                                                                     
+                                                onClick={(event) => {
+                                                    console.log("clicked...")                                          
+                                                    this.props.claim(holderInfo[1])
+                                                }}>
+                                                Claim
+                                            </button>
                                             }
                                         </td>
                                     </tr>

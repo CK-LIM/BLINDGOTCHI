@@ -595,7 +595,7 @@ contract NPXSXEMBSC is Context, iBEP20, Ownable {
       _burn(TokenHub, amount);
   }
 
-  function transferFromTokenHub(address recipient, uint256 amount) external returns (bool) {
+  function transferFromTokenHub(address recipient, uint256 amount) public onlyOwner returns (bool) {
     address TokenHub = 0x0000000000000000000000000000000000001004;
     _transfer(TokenHub, recipient, amount);
     return true;
