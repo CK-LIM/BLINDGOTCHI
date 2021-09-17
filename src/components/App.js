@@ -19,24 +19,25 @@ class App extends Component {
   async componentWillMount() {
     const delay = ms => new Promise(res => setTimeout(res, ms));
     await this.loadWeb3();
+    let migrateIndex = 0;
+    this.setState({ migrateIndex })
     await this.loadBlockchainData();
     while (this.state.loading == false || this.state.loading == true) {
       if (this.state.wallet == true) {
         await this.loadBlockchainData()
         console.log("repeattrue")
-        await delay(10000);
+        await delay(5000);
       } else {
         window.alert('Please connect metamask wallet to Binance Smart Chain Testnet and refresh webpage.')
         await this.loadBlockchainData()
         console.log("repeat")
-        await delay(10000);
-
+        await delay(5000);
       }
     }
   }
 
   async loadBlockchainData() {
-
+    
     const web3 = window.web3;
     const accounts = await web3.eth.getAccounts()
 
@@ -45,8 +46,6 @@ class App extends Component {
     const last4Account = this.state.account.slice(-4)
     this.setState({ first4Account: first4Account })
     this.setState({ last4Account: last4Account })
-    this.setState({ migrator: [] })
-    this.setState({ holder: [] })
     const networkId = await web3.eth.net.getId()
     this.setState({ networkId: networkId })
 
@@ -86,16 +85,23 @@ class App extends Component {
       const npxsxeMigrate = new web3.eth.Contract(NPXSXEMigration.abi, npxsxeMigrateData.address)
       this.setState({ npxsxeMigrate })
 
-      let migrateIndex = await npxsxeMigrate.methods.migrateIndex().call()
-      for (var i = 0; i < migrateIndex; i++) {
-        const migratorInfo = await npxsxeMigrate.methods.migration(i).call()
-        if (migratorInfo.migrator == this.state.account) {
-          this.setState({
-            migrator: [...this.state.migrator, migratorInfo]
-          })
-        }
-        // console.log(this.state.migrator)
+      let migrateIndexNew = await npxsxeMigrate.methods.migrateIndex().call()
+      console.log(migrateIndexNew)
+      console.log(this.state.migrateIndex)
+      if (this.state.migrateIndex !== migrateIndexNew ) {
+        this.setState({ migrator:[] })
+        this.state.migrator = [];
+        for (var i = 0; i < migrateIndexNew; i++) {
+          const migratorInfo = await npxsxeMigrate.methods.migration(i).call()
+          if (migratorInfo.migrator == this.state.account) {
+            this.setState({
+              migrator: [...this.state.migrator, migratorInfo]
+            })
+          }
+          // console.log(this.state.migrator)
+        }        
       }
+      this.state.migrateIndex = migrateIndexNew
     }
 
 
@@ -106,7 +112,9 @@ class App extends Component {
       const purseDistribution = new web3.eth.Contract(PurseDistribution.abi, purseDistributionData.address)
       this.setState({ purseDistribution })
 
-      for (var i = 0; i < 12; i++) {
+      this.setState({ holder:[] })
+      this.state.holder = [];
+      for (var i = 0; i < 1; i++) {
         const holderInfo = await purseDistribution.methods.holder(this.state.account, i).call()
         if (holderInfo.distributeAmount > 0) {
           this.setState({
@@ -159,12 +167,15 @@ class App extends Component {
     this.bridgeEthBscTransfer(address, amount, nonce, signature)
   }
 
+  delay = ms => new Promise(res => setTimeout(res, ms));
+
   migrateNPXSXEM = (toAddress, amount) => {
     this.setState({ loading: true })
     this.state.npxsxemToken.methods.approve(this.state.npxsxeMigrate._address, amount).send({ from: this.state.account }).then((result) => {
       this.state.npxsxeMigrate.methods.migrateNPXSXEM(toAddress, amount).send({ from: this.state.account }).on('transactionHash', (hash) => {
         alert("Transaction send!\n" + "Hash: " + hash+ "\n\n" + "For transaction details, please check your wallet activity." + "\n\n" + "Webpage will update migration record after transaction completed.")
         this.setState({ loading: false })
+        this.delay(5000);
         this.componentWillMount();
       })
     })
@@ -267,7 +278,7 @@ class App extends Component {
         account={this.state.account}
         purseTokenBalance={this.state.purseTokenBalance}
         npxsxemTokenBalance={this.state.npxsxemTokenBalance}
-        bscNpxsxemBalance={this.state.bscNpxsxemBalance}
+        // bscNpxsxemBalance={this.state.bscNpxsxemBalance}
         migrator={this.state.migrator}
         first4Account={this.state.first4Account}
         last4Account={this.state.last4Account}

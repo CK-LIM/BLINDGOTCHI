@@ -2,20 +2,15 @@
   "manifestVersion": "3.2",
   "proxies": [
     {
-      "address": "0xf1A5928baeEE87a3c1CB3356ac540A3897F34802",
-      "txHash": "0x0dd34f1de516742f7507791d09daff1b96aeb71e3dc175e8f0dfe05c24568ac4",
-      "kind": "uups"
-    },
-    {
-      "address": "0x83C984E9876700f19688d774ced8bd31723FE0CC",
-      "txHash": "0xb4325b1cdb80244ddea28e864be4ce07d3c955cb479ab8af938f342364cf7aaa",
+      "address": "0x56FA04Ae88f567a3D4F82Cf5dAa440dDE7bfAeCc",
+      "txHash": "0x5c32f072023c1fa521de22d5ccc93ff7651d5011598e40e938d5e938f0c2bd02",
       "kind": "uups"
     }
   ],
   "impls": {
-    "1d30509c9cdea16945c73193025099c64891a23c9ade0bcb6a30f2131ea48b33": {
-      "address": "0x78Db40E4E6895DC0317FfCC7f34C0cE705C86c5e",
-      "txHash": "0xc149cab7e9915a59b4fc9be5052f8c93c79f5d9ab3c12fb73c04a38dfb1c7a83",
+    "7143e2f796a45dc3d24e024a781409c230a2f738abc2ccce2bd3260fa8f9b7e0": {
+      "address": "0xD8b904721169deAe3ecf28d2B82B2Fe9650AAB1e",
+      "txHash": "0xc256c54cc4c4d3c66acc0b2defe03dc460a4dbd7148686c8bf3bc996046fa26a",
       "layout": {
         "storage": [
           {
@@ -219,7 +214,7 @@
           {
             "contract": "PurseTokenUpgradable",
             "label": "accAmount",
-            "type": "t_mapping(t_address,t_struct(AccAmount)2146_storage)",
+            "type": "t_mapping(t_address,t_struct(AccAmount)2122_storage)",
             "src": "..\\..\\..\\..\\..\\..\\..\\..\\..\\C\\Users\\cheek\\Desktop\\Developer doc\\Visual Studio Code\\PundiX\\YieldFarm_BridgeEthBsc\\src\\contracts\\PurseTokenUpgradable.sol:55"
           }
         ],
@@ -251,10 +246,10 @@
           "t_bool": {
             "label": "bool"
           },
-          "t_mapping(t_address,t_struct(AccAmount)2146_storage)": {
+          "t_mapping(t_address,t_struct(AccAmount)2122_storage)": {
             "label": "mapping(address => struct PurseTokenUpgradable.AccAmount)"
           },
-          "t_struct(AccAmount)2146_storage": {
+          "t_struct(AccAmount)2122_storage": {
             "label": "struct PurseTokenUpgradable.AccAmount",
             "members": [
               {
@@ -276,9 +271,9 @@
         }
       }
     },
-    "c3369ac84f7a11a182f056d47885c1714b08cfc06abe82ac1b86b6a2316a9d98": {
-      "address": "0x97659cB1e207BA139E0Bbf64BC3d0Fe9df769277",
-      "txHash": "0x8c5b94d86b3d9eb484cf2769f849a4cc837ea6cfa70c1614d0ea9d50bef5511c",
+    "cc77612964a382be311aba94367fcf7c3f1846a970e8d368fcb757b91397c882": {
+      "address": "0xC78144dc83497DF0D2c3F0A6bb8b82Ba3DB5E617",
+      "txHash": "0x472f11181aef39a5672e80a6fee4a46920cfdbf31ff566449f24a1c80edb9ae0",
       "layout": {
         "storage": [
           {

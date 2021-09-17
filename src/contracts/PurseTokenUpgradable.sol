@@ -358,7 +358,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         require(_disPercent >= 0);
 
         name = "PURSE Token";
-        symbol = "PR";
+        symbol = "PURSE";
         totalSupply = 64000000000 * (10**18); // 64 billion tokens
         decimals = 18;
         minimumSupply = 20000 * (10**18);
@@ -369,7 +369,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         liqPercent = _liqPercent;
         disPercent = _disPercent;
         admins = [msg.sender];
-        _averageInterval = 1 minutes;       // update to 1 days in mainnet(prod)
+        _averageInterval = 1 days;       // update to 1 days in mainnet(prod)
         __Pausable_init();
         __Ownable_init();
         __UUPSUpgradeable_init();

