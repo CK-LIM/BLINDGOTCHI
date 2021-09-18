@@ -16,6 +16,7 @@ abstract contract ERC20Interface {
 }
 
 contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgradeable, OwnableUpgradeable {
+
     string public name;
     string public symbol;
     uint256 public totalSupply;
@@ -36,16 +37,6 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
     uint256 public _percentageDistribute;
     uint256 public _lastRewardStartTime;
     uint256 public _totalSupply;
-    
-    event Transfer(address indexed _from, address indexed _to, uint256 _value);
-    event Burn(address indexed _from, uint256 _value);
-    event Mint(address indexed _from, address indexed _to, uint256 _value);
-    event Approval(address indexed _owner, address indexed _spender, uint256 _value);
-
-    modifier onlyAdmin() {
-        require(isAdmin[msg.sender]);
-        _;
-    }
 
     mapping(address => uint256) public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
@@ -57,6 +48,16 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
     struct AccAmount {
         uint256 amount;
         uint256 lastUpdateTime;
+    }
+
+    event Transfer(address indexed _from, address indexed _to, uint256 _value);
+    event Burn(address indexed _from, uint256 _value);
+    event Mint(address indexed _from, address indexed _to, uint256 _value);
+    event Approval(address indexed _owner, address indexed _spender, uint256 _value);
+
+    modifier onlyAdmin() {
+        require(isAdmin[msg.sender]);
+        _;
     }
 
     function transfer(address _to, uint256 _value) public whenNotPaused returns (bool success)
