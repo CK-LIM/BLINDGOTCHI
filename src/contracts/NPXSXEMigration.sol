@@ -77,7 +77,6 @@ contract NPXSXEMigration {
         require(airdropIndex < 11 && airdropIndex >= 0) ;
         for (uint256 i = start; i < end; i++) {
             if (isAirdrop[i][airdropIndex] == false) {
-                require(isAirdrop[i][airdropIndex] == false);
                 address recipient = migration[i].to;
                 uint256 amount = migration[i].migrateBalance * 8 / 100;
                 isAirdrop[i][airdropIndex] = true;
