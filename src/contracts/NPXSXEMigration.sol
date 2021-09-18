@@ -6,21 +6,24 @@ import "./PurseTokenUpgradable.sol";
 
 
 contract NPXSXEMigration {
-    event Migrate (uint32 migrateIndex, address indexed _from, address _to,  uint256 value);
+    event Migrate (uint256 migrateIndex, address indexed _from, address _to,  uint256 value);
 
     string public name = "NPXSXEM Migration";
     address public npxsxemToken;
     PurseTokenUpgradable public purseToken;
     uint256 public constant validDuration = 91 days;
     uint256 internal migrationStart;
+    uint256 public endMigration;
     address public owner;
+    bool public isMigrationStart;
 
-    uint32 public migrateIndex;
-    mapping(uint32 => MigratorInfo) public migration;  //index->times   
-    mapping(address => bool) public isOwner;    
+    uint256 public migrateIndex;
+    mapping(uint256 => MigratorInfo) public migration;  //index->times   
+    mapping(address => bool) public isOwner;
+    mapping(uint256 => mapping(uint256 => bool)) public isAirdrop;
 
     struct MigratorInfo {
-        uint32 migrateIndex;
+        uint256 migrateIndex;
         address migrator;
         address to;
         uint256 migrateBalance;
@@ -39,28 +42,47 @@ contract NPXSXEMigration {
         migrationStart = block.timestamp;
     }
 
-    function migrateNPXSXEM(address _to, uint256 _amount) public {     
+    function migrateNPXSXEM(address _to, uint256 _amount) public {    
+        require (isMigrationStart == true);
         uint256 remainingAmount = purseToken.balanceOf(address(this)); 
-        uint256 end = migrationStart + validDuration;
-        require(block.timestamp <= end, "Migration window over");
+        require(block.timestamp <= endMigration, "Migration window over");
         require(_amount > 0);
         require(remainingAmount >=_amount);
 
         uint256 transferAmount = (_amount * 12) / 100;
         ERC20Interface(npxsxemToken).transferFrom(msg.sender, address(this), _amount);
         // npxsxemToken.transferFrom(msg.sender, address(this), _amount);      // Migrate npxsxem token   
+
+        migration[migrateIndex] = MigratorInfo(migrateIndex, msg.sender, _to, _amount);
+        for (uint256 i = 0; i < 11; i++) {
+            isAirdrop[migrateIndex][i] = false;
+        }
         purseToken.transfer(_to, transferAmount);
-        migration[migrateIndex] = MigratorInfo(migrateIndex, msg.sender, _to, _amount );
-        
+
         emit Migrate(migrateIndex, msg.sender, _to, _amount);
         migrateIndex += 1;
     }
+    
+    function startMigration(bool check) public onlyOwner {
+        if (check) {
+            endMigration = block.timestamp + validDuration;
+            isMigrationStart = true;
+        } else {
+            isMigrationStart = false;
+        }
+    }
 
-    function airDrop(uint32 start, uint32 end) public onlyOwner {
-        for (uint32 i = start; i <= end; i++) {
-            address recipient = migration[i].to;
-            uint256 amount = migration[i].migrateBalance * 8 / 100;
-            purseToken.transfer(recipient, amount);
+    function airDrop(uint256 start, uint256 end, uint256 airdropIndex) public onlyOwner {
+        require(start < end && end <= migrateIndex );
+        require(airdropIndex < 11 && airdropIndex >= 0) ;
+        for (uint256 i = start; i < end; i++) {
+            if (isAirdrop[i][airdropIndex] == false) {
+                require(isAirdrop[i][airdropIndex] == false);
+                address recipient = migration[i].to;
+                uint256 amount = migration[i].migrateBalance * 8 / 100;
+                isAirdrop[i][airdropIndex] = true;
+                purseToken.transfer(recipient, amount);                
+            }
         }
     }
 
