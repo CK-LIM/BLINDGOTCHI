@@ -142,14 +142,14 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
             if (accAmount[_holder].lastUpdateTime < _lastRewardStartTime) {
                 uint256 interval = (block.timestamp - _lastRewardStartTime)/ _averageInterval;
                 uint256 accumulateAmount = balanceOf[_holder] * interval;
-                accAmount[_holder].lastUpdateTime = _lastRewardStartTime + (interval * 60);   //1 day = 86400 seconds
+                accAmount[_holder].lastUpdateTime = _lastRewardStartTime + (interval * 86400);   //1 day = 86400 seconds
                 accAmount[_holder].amount = accumulateAmount;            
             } 
             else {
             uint256 interval = (block.timestamp - accAmount[_holder].lastUpdateTime)/ _averageInterval;
                 if (interval >= 1) {
                     uint256 accumulateAmount = balanceOf[_holder] * interval;
-                    accAmount[_holder].lastUpdateTime += (interval * 60);
+                    accAmount[_holder].lastUpdateTime += (interval * 86400);
                     accAmount[_holder].amount = accAmount[_holder].amount + accumulateAmount;                     
                 }
             }
@@ -185,7 +185,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
                 uint256 interval = (block.timestamp - accAmount[_holder].lastUpdateTime)/ _averageInterval;
                 if (interval >= 1) {
                     uint256 accumulateAmount = balanceOf[_holder] * interval;
-                    accAmount[_holder].lastUpdateTime += (interval * 60);
+                    accAmount[_holder].lastUpdateTime += (interval * 86400);
                     accAmount[_holder].amount = accAmount[_holder].amount + accumulateAmount;                     
                 }
             }
@@ -400,7 +400,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         liqPercent = _liqPercent;
         disPercent = _disPercent;
         admins = [msg.sender];
-        _averageInterval = 1 minutes;       // update to 1 days in mainnet(prod)
+        _averageInterval = 1 days;       // update to 1 days in mainnet(prod)
         __Pausable_init();
         __Ownable_init();
         __UUPSUpgradeable_init();
