@@ -1,13 +1,13 @@
 {
   "contractName": "SafeMath",
   "abi": [],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"Wrappers over Solidity's arithmetic operations with added overflow checks. Arithmetic operations in Solidity wrap on overflow. This can easily result in bugs, because programmers usually assume that an overflow raises an error, which is the standard behavior in high level programming languages. `SafeMath` restores this intuition by reverting the transaction when an operation overflows. Using this library instead of the unchecked operations eliminates an entire class of bugs, so it's recommended to use it always.\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/cheek/Desktop/Developer doc/Visual Studio Code/PundiX/YieldFarm_BridgeEthBsc/src/contracts/NPXSXEMBSC.sol\":\"SafeMath\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/cheek/Desktop/Developer doc/Visual Studio Code/PundiX/YieldFarm_BridgeEthBsc/src/contracts/NPXSXEMBSC.sol\":{\"keccak256\":\"0x514f5549c236c6081d9f4bdd73d7c20801f833afcc3e955796649764c8c08b7c\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://7525a25903db7fdacb34e2af1d69d5fd8f520267e7f182e9a2ae4e558d6242d0\",\"dweb:/ipfs/QmPH7hqNjDpYSTmAGwGF1WtyqayJbfYAGotgHTF8phTVrv\"]}},\"version\":1}",
-  "bytecode": "0x60566050600b82828239805160001a6073146043577f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220415f8b51d43e234301519f78da2f4d3ceebe012001403ef59c19265d51b3ab5264736f6c63430008070033",
-  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220415f8b51d43e234301519f78da2f4d3ceebe012001403ef59c19265d51b3ab5264736f6c63430008070033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.7+commit.e28d00a7\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"Wrappers over Solidity's arithmetic operations with added overflow checks. Arithmetic operations in Solidity wrap on overflow. This can easily result in bugs, because programmers usually assume that an overflow raises an error, which is the standard behavior in high level programming languages. `SafeMath` restores this intuition by reverting the transaction when an operation overflows. Using this library instead of the unchecked operations eliminates an entire class of bugs, so it's recommended to use it always.\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/cheek/Desktop/Developer doc/Visual Studio Code/PundiX/YieldFarm_BridgeEthBsc/src/contracts/NPXSXEMBSC.sol\":\"SafeMath\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/cheek/Desktop/Developer doc/Visual Studio Code/PundiX/YieldFarm_BridgeEthBsc/src/contracts/NPXSXEMBSC.sol\":{\"keccak256\":\"0x4ac3d20c998403d8330cc50bc8b8014cbf6bcc088f491eefe7b165eaf1998b45\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://c31b14d8d6985a1fe386af94f9a15ed1fbd67dd4effef82d36e4118cf381ea37\",\"dweb:/ipfs/QmXHeMY39c5noLWBCEovopcpopw2JD5o36HtqbCyEUNx1f\"]}},\"version\":1}",
+  "bytecode": "0x60566050600b82828239805160001a6073146043577f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122001099e0e4c7e056016c6f20e7770ed72f5a4ee2cf581b949f3cce28e65c6e15e64736f6c63430008070033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122001099e0e4c7e056016c6f20e7770ed72f5a4ee2cf581b949f3cce28e65c6e15e64736f6c63430008070033",
   "immutableReferences": {},
   "sourceMap": "4775:4428:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "4775:4428:1:-:0;;;;;;;;",
-  "source": "// SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^ 0.8.0;\r\n\r\ninterface iBEP20 {\r\n  /**\r\n   * @dev Returns the amount of tokens in existence.\r\n   */\r\n  function totalSupply() external view returns (uint256);\r\n\r\n  /**\r\n   * @dev Returns the token decimals.\r\n   */\r\n  function decimals() external view returns (uint8);\r\n\r\n  /**\r\n   * @dev Returns the token symbol.\r\n   */\r\n  function symbol() external view returns (string memory);\r\n\r\n  /**\r\n  * @dev Returns the token name.\r\n  */\r\n  function name() external view returns (string memory);\r\n\r\n  /**\r\n   * @dev Returns the bep token owner.\r\n   */\r\n  function getOwner() external view returns (address);\r\n\r\n  /**\r\n   * @dev Returns the amount of tokens owned by `account`.\r\n   */\r\n  function balanceOf(address account) external view returns (uint256);\r\n\r\n  /**\r\n   * @dev Moves `amount` tokens from the caller's account to `recipient`.\r\n   *\r\n   * Returns a boolean value indicating whether the operation succeeded.\r\n   *\r\n   * Emits a {Transfer} event.\r\n   */\r\n  function transfer(address recipient, uint256 amount) external returns (bool);\r\n\r\n  /**\r\n   * @dev Returns the remaining number of tokens that `spender` will be\r\n   * allowed to spend on behalf of `owner` through {transferFrom}. This is\r\n   * zero by default.\r\n   *\r\n   * This value changes when {approve} or {transferFrom} are called.\r\n   */\r\n  function allowance(address _owner, address spender) external view returns (uint256);\r\n\r\n  /**\r\n   * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.\r\n   *\r\n   * Returns a boolean value indicating whether the operation succeeded.\r\n   *\r\n   * IMPORTANT: Beware that changing an allowance with this method brings the risk\r\n   * that someone may use both the old and the new allowance by unfortunate\r\n   * transaction ordering. One possible solution to mitigate this race\r\n   * condition is to first reduce the spender's allowance to 0 and set the\r\n   * desired value afterwards:\r\n   * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\r\n   *\r\n   * Emits an {Approval} event.\r\n   */\r\n  function approve(address spender, uint256 amount) external returns (bool);\r\n\r\n  /**\r\n   * @dev Moves `amount` tokens from `sender` to `recipient` using the\r\n   * allowance mechanism. `amount` is then deducted from the caller's\r\n   * allowance.\r\n   *\r\n   * Returns a boolean value indicating whether the operation succeeded.\r\n   *\r\n   * Emits a {Transfer} event.\r\n   */\r\n  function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);\r\n\r\n  /**\r\n   * @dev Emitted when `value` tokens are moved from one account (`from`) to\r\n   * another (`to`).\r\n   *\r\n   * Note that `value` may be zero.\r\n   */\r\n  event Transfer(address indexed from, address indexed to, uint256 value);\r\n\r\n  /**\r\n   * @dev Emitted when the allowance of a `spender` for an `owner` is set by\r\n   * a call to {approve}. `value` is the new allowance.\r\n   */\r\n  event Approval(address indexed owner, address indexed spender, uint256 value);\r\n}\r\n\r\nabstract contract ERC20Interface {\r\n\r\n    function transfer(address to, uint tokens) public virtual returns (bool success);\r\n\r\n}\r\n\r\n/*\r\n * @dev Provides information about the current execution context, including the\r\n * sender of the transaction and its data. While these are generally available\r\n * via msg.sender and msg.data, they should not be accessed in such a direct\r\n * manner, since when dealing with GSN meta-transactions the account sending and\r\n * paying for execution may not be the actual sender (as far as an application\r\n * is concerned).\r\n *\r\n * This contract is only required for intermediate, library-like contracts.\r\n */\r\nabstract contract Context {\r\n  // Empty internal constructor, to prevent people from mistakenly deploying\r\n  // an instance of this contract, which should be used via inheritance.\r\n  constructor () internal { }\r\n\r\n  function _msgSender() internal view returns (address ) {\r\n    return msg.sender;\r\n  }\r\n\r\n  function _msgData() internal view returns (bytes memory) {\r\n    this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691\r\n    return msg.data;\r\n  }\r\n}\r\n\r\n/**\r\n * @dev Wrappers over Solidity's arithmetic operations with added overflow\r\n * checks.\r\n *\r\n * Arithmetic operations in Solidity wrap on overflow. This can easily result\r\n * in bugs, because programmers usually assume that an overflow raises an\r\n * error, which is the standard behavior in high level programming languages.\r\n * `SafeMath` restores this intuition by reverting the transaction when an\r\n * operation overflows.\r\n *\r\n * Using this library instead of the unchecked operations eliminates an entire\r\n * class of bugs, so it's recommended to use it always.\r\n */\r\nlibrary SafeMath {\r\n  /**\r\n   * @dev Returns the addition of two unsigned integers, reverting on\r\n   * overflow.\r\n   *\r\n   * Counterpart to Solidity's `+` operator.\r\n   *\r\n   * Requirements:\r\n   * - Addition cannot overflow.\r\n   */\r\n  function add(uint256 a, uint256 b) internal pure returns (uint256) {\r\n    uint256 c = a + b;\r\n    require(c >= a, \"SafeMath: addition overflow\");\r\n\r\n    return c;\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the subtraction of two unsigned integers, reverting on\r\n   * overflow (when the result is negative).\r\n   *\r\n   * Counterpart to Solidity's `-` operator.\r\n   *\r\n   * Requirements:\r\n   * - Subtraction cannot overflow.\r\n   */\r\n  function sub(uint256 a, uint256 b) internal pure returns (uint256) {\r\n    return sub(a, b, \"SafeMath: subtraction overflow\");\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the subtraction of two unsigned integers, reverting with custom message on\r\n   * overflow (when the result is negative).\r\n   *\r\n   * Counterpart to Solidity's `-` operator.\r\n   *\r\n   * Requirements:\r\n   * - Subtraction cannot overflow.\r\n   */\r\n  function sub(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {\r\n    require(b <= a, errorMessage);\r\n    uint256 c = a - b;\r\n\r\n    return c;\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the multiplication of two unsigned integers, reverting on\r\n   * overflow.\r\n   *\r\n   * Counterpart to Solidity's `*` operator.\r\n   *\r\n   * Requirements:\r\n   * - Multiplication cannot overflow.\r\n   */\r\n  function mul(uint256 a, uint256 b) internal pure returns (uint256) {\r\n    // Gas optimization: this is cheaper than requiring 'a' not being zero, but the\r\n    // benefit is lost if 'b' is also tested.\r\n    // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522\r\n    if (a == 0) {\r\n      return 0;\r\n    }\r\n\r\n    uint256 c = a * b;\r\n    require(c / a == b, \"SafeMath: multiplication overflow\");\r\n\r\n    return c;\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the integer division of two unsigned integers. Reverts on\r\n   * division by zero. The result is rounded towards zero.\r\n   *\r\n   * Counterpart to Solidity's `/` operator. Note: this function uses a\r\n   * `revert` opcode (which leaves remaining gas untouched) while Solidity\r\n   * uses an invalid opcode to revert (consuming all remaining gas).\r\n   *\r\n   * Requirements:\r\n   * - The divisor cannot be zero.\r\n   */\r\n  function div(uint256 a, uint256 b) internal pure returns (uint256) {\r\n    return div(a, b, \"SafeMath: division by zero\");\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the integer division of two unsigned integers. Reverts with custom message on\r\n   * division by zero. The result is rounded towards zero.\r\n   *\r\n   * Counterpart to Solidity's `/` operator. Note: this function uses a\r\n   * `revert` opcode (which leaves remaining gas untouched) while Solidity\r\n   * uses an invalid opcode to revert (consuming all remaining gas).\r\n   *\r\n   * Requirements:\r\n   * - The divisor cannot be zero.\r\n   */\r\n  function div(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {\r\n    // Solidity only automatically asserts when dividing by 0\r\n    require(b > 0, errorMessage);\r\n    uint256 c = a / b;\r\n    // assert(a == b * c + a % b); // There is no case in which this doesn't hold\r\n\r\n    return c;\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),\r\n   * Reverts when dividing by zero.\r\n   *\r\n   * Counterpart to Solidity's `%` operator. This function uses a `revert`\r\n   * opcode (which leaves remaining gas untouched) while Solidity uses an\r\n   * invalid opcode to revert (consuming all remaining gas).\r\n   *\r\n   * Requirements:\r\n   * - The divisor cannot be zero.\r\n   */\r\n  function mod(uint256 a, uint256 b) internal pure returns (uint256) {\r\n    return mod(a, b, \"SafeMath: modulo by zero\");\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),\r\n   * Reverts with custom message when dividing by zero.\r\n   *\r\n   * Counterpart to Solidity's `%` operator. This function uses a `revert`\r\n   * opcode (which leaves remaining gas untouched) while Solidity uses an\r\n   * invalid opcode to revert (consuming all remaining gas).\r\n   *\r\n   * Requirements:\r\n   * - The divisor cannot be zero.\r\n   */\r\n  function mod(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {\r\n    require(b != 0, errorMessage);\r\n    return a % b;\r\n  }\r\n}\r\n\r\n/**\r\n * @dev Contract module which provides a basic access control mechanism, where\r\n * there is an account (an owner) that can be granted exclusive access to\r\n * specific functions.\r\n *\r\n * By default, the owner account will be the one that deploys the contract. This\r\n * can later be changed with {transferOwnership}.\r\n *\r\n * This module is used through inheritance. It will make available the modifier\r\n * `onlyOwner`, which can be applied to your functions to restrict their use to\r\n * the owner.\r\n */\r\nabstract contract Ownable is Context {\r\n  address private _owner;\r\n\r\n  event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\r\n\r\n  /**\r\n   * @dev Initializes the contract setting the deployer as the initial owner.\r\n   */\r\n  constructor () internal {\r\n    address msgSender = _msgSender();\r\n    _owner = msgSender;\r\n    emit OwnershipTransferred(address(0), msgSender);\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the address of the current owner.\r\n   */\r\n  function owner() public view returns (address) {\r\n    return _owner;\r\n  }\r\n\r\n  /**\r\n   * @dev Throws if called by any account other than the owner.\r\n   */\r\n  modifier onlyOwner() {\r\n    require(_owner == _msgSender(), \"Ownable: caller is not the owner\");\r\n    _;\r\n  }\r\n\r\n  /**\r\n   * @dev Leaves the contract without owner. It will not be possible to call\r\n   * `onlyOwner` functions anymore. Can only be called by the current owner.\r\n   *\r\n   * NOTE: Renouncing ownership will leave the contract without an owner,\r\n   * thereby removing any functionality that is only available to the owner.\r\n   */\r\n  function renounceOwnership() public onlyOwner {\r\n    emit OwnershipTransferred(_owner, address(0));\r\n    _owner = address(0);\r\n  }\r\n\r\n  /**\r\n   * @dev Transfers ownership of the contract to a new account (`newOwner`).\r\n   * Can only be called by the current owner.\r\n   */\r\n  function transferOwnership(address newOwner) public onlyOwner {\r\n    _transferOwnership(newOwner);\r\n  }\r\n\r\n  /**\r\n   * @dev Transfers ownership of the contract to a new account (`newOwner`).\r\n   */\r\n  function _transferOwnership(address newOwner) internal {\r\n    require(newOwner != address(0), \"Ownable: new owner is the zero address\");\r\n    emit OwnershipTransferred(_owner, newOwner);\r\n    _owner = newOwner;\r\n  }\r\n}\r\n\r\ncontract NPXSXEMBSC is Context, iBEP20, Ownable {\r\n  using SafeMath for uint256;\r\n\r\n  mapping (address => uint256) private _balances;\r\n\r\n  mapping (address => mapping (address => uint256)) private _allowances;\r\n\r\n  uint256 private _totalSupply;\r\n  uint8 public _decimals;\r\n  string public _symbol;\r\n  string public _name;\r\n\r\n  constructor() public {\r\n    _name = 'NPXSXEM Token';\r\n    _symbol = 'NPXSXEM';\r\n    _decimals = 18;\r\n    _totalSupply = 44754364975.46 *10**18; // *10 ** 10 to match bep-2 supply\r\n    _balances[msg.sender] = _totalSupply;\r\n\r\n    emit Transfer(address(0), msg.sender, _totalSupply);\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the bep token owner.\r\n   */\r\n  function getOwner() external view virtual override returns (address) {\r\n    return owner();\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the token decimals.\r\n   */\r\n  function decimals() external view virtual override returns (uint8) {\r\n    return _decimals;\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the token symbol.\r\n   */\r\n  function symbol() external view virtual override returns (string memory) {\r\n    return _symbol;\r\n  }\r\n\r\n  /**\r\n  * @dev Returns the token name.\r\n  */\r\n  function name() external view virtual override returns (string memory) {\r\n    return _name;\r\n  }\r\n\r\n  /**\r\n   * @dev See {BEP20-totalSupply}.\r\n   */\r\n  function totalSupply() external view virtual override returns (uint256) {\r\n    return _totalSupply;\r\n  }\r\n\r\n  /**\r\n   * @dev See {BEP20-balanceOf}.\r\n   */\r\n  function balanceOf(address account) external view virtual override returns (uint256) {\r\n    return _balances[account];\r\n  }\r\n\r\n  /**\r\n   * @dev See {BEP20-transfer}.\r\n   *\r\n   * Requirements:\r\n   *\r\n   * - `recipient` cannot be the zero address.\r\n   * - the caller must have a balance of at least `amount`.\r\n   */\r\n  function transfer(address recipient, uint256 amount) external override returns (bool) {\r\n    _transfer(_msgSender(), recipient, amount);\r\n    return true;\r\n  }\r\n\r\n  /**\r\n   * @dev See {BEP20-allowance}.\r\n   */\r\n  function allowance(address owner, address spender) external view override returns (uint256) {\r\n    return _allowances[owner][spender];\r\n  }\r\n\r\n  /**\r\n   * @dev See {BEP20-approve}.\r\n   *\r\n   * Requirements:\r\n   *\r\n   * - `spender` cannot be the zero address.\r\n   */\r\n  function approve(address spender, uint256 amount) external override returns (bool) {\r\n    _approve(_msgSender(), spender, amount);\r\n    return true;\r\n  }\r\n\r\n  /**\r\n   * @dev See {BEP20-transferFrom}.\r\n   *\r\n   * Emits an {Approval} event indicating the updated allowance. This is not\r\n   * required by the EIP. See the note at the beginning of {BEP20};\r\n   *\r\n   * Requirements:\r\n   * - `sender` and `recipient` cannot be the zero address.\r\n   * - `sender` must have a balance of at least `amount`.\r\n   * - the caller must have allowance for `sender`'s tokens of at least\r\n   * `amount`.\r\n   */\r\n  function transferFrom(address sender, address recipient, uint256 amount) external override returns (bool) {\r\n    _transfer(sender, recipient, amount);\r\n    _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, \"BEP20: transfer amount exceeds allowance\"));\r\n    return true;\r\n  }\r\n\r\n  /**\r\n   * @dev Atomically increases the allowance granted to `spender` by the caller.\r\n   *\r\n   * This is an alternative to {approve} that can be used as a mitigation for\r\n   * problems described in {BEP20-approve}.\r\n   *\r\n   * Emits an {Approval} event indicating the updated allowance.\r\n   *\r\n   * Requirements:\r\n   *\r\n   * - `spender` cannot be the zero address.\r\n   */\r\n  function increaseAllowance(address spender, uint256 addedValue) public returns (bool) {\r\n    _approve(_msgSender(), spender, _allowances[_msgSender()][spender].add(addedValue));\r\n    return true;\r\n  }\r\n\r\n  /**\r\n   * @dev Atomically decreases the allowance granted to `spender` by the caller.\r\n   *\r\n   * This is an alternative to {approve} that can be used as a mitigation for\r\n   * problems described in {BEP20-approve}.\r\n   *\r\n   * Emits an {Approval} event indicating the updated allowance.\r\n   *\r\n   * Requirements:\r\n   *\r\n   * - `spender` cannot be the zero address.\r\n   * - `spender` must have allowance for the caller of at least\r\n   * `subtractedValue`.\r\n   */\r\n  function decreaseAllowance(address spender, uint256 subtractedValue) public returns (bool) {\r\n    _approve(_msgSender(), spender, _allowances[_msgSender()][spender].sub(subtractedValue, \"BEP20: decreased allowance below zero\"));\r\n    return true;\r\n  }\r\n\r\n    /**\r\n    * @dev Destroys `amount` tokens from the caller.\r\n    *\r\n    * See {BEP20-_burn}.\r\n    */\r\n  function burn(uint256 amount) public virtual {\r\n      _burn(_msgSender(), amount);\r\n  }\r\n\r\n  /**\r\n    * @dev Destroys `amount` tokens from `account`, deducting from the caller's\r\n    * allowance.\r\n    *\r\n    * See {BEP20-_burn} and {BEP20-allowance}.\r\n    *\r\n    * Requirements:\r\n    *\r\n    * - the caller must have allowance for ``accounts``'s tokens of at least\r\n    * `amount`.\r\n    */\r\n  function burnFrom(address account, uint256 amount) public virtual {\r\n      uint256 decreasedAllowance = _allowances[account][_msgSender()].sub(amount, \"BEP20: burn amount exceeds allowance\");\r\n\r\n      _approve(account, _msgSender(), decreasedAllowance);\r\n      _burn(account, amount);\r\n  }\r\n\r\n\r\n  /**\r\n   * @dev Moves tokens `amount` from `sender` to `recipient`.\r\n   *\r\n   * This is internal function is equivalent to {transfer}, and can be used to\r\n   * e.g. implement automatic token fees, slashing mechanisms, etc.\r\n   *\r\n   * Emits a {Transfer} event.\r\n   *\r\n   * Requirements:\r\n   *\r\n   * - `sender` cannot be the zero address.\r\n   * - `recipient` cannot be the zero address.\r\n   * - `sender` must have a balance of at least `amount`.\r\n   */\r\n  function _transfer(address sender, address recipient, uint256 amount) internal {\r\n    require(sender != address(0), \"BEP20: transfer from the zero address\");\r\n    require(recipient != address(0), \"BEP20: transfer to the zero address\");\r\n\r\n    _balances[sender] = _balances[sender].sub(amount, \"BEP20: transfer amount exceeds balance\");\r\n    _balances[recipient] = _balances[recipient].add(amount);\r\n    emit Transfer(sender, recipient, amount);\r\n  }\r\n\r\n\r\n  /**\r\n   * @dev Destroys `amount` tokens from `account`, reducing the\r\n   * total supply.\r\n   *\r\n   * Emits a {Transfer} event with `to` set to the zero address.\r\n   *\r\n   * Requirements\r\n   *\r\n   * - `account` cannot be the zero address.\r\n   * - `account` must have at least `amount` tokens.\r\n   */\r\n  function _burn(address account, uint256 amount) internal {\r\n    require(account != address(0), \"BEP20: burn from the zero address\");\r\n\r\n    _balances[account] = _balances[account].sub(amount, \"BEP20: burn amount exceeds balance\");\r\n    _totalSupply = _totalSupply.sub(amount);\r\n    emit Transfer(account, address(0), amount);\r\n  }\r\n\r\n  /**\r\n   * @dev Sets `amount` as the allowance of `spender` over the `owner`s tokens.\r\n   *\r\n   * This is internal function is equivalent to `approve`, and can be used to\r\n   * e.g. set automatic allowances for certain subsystems, etc.\r\n   *\r\n   * Emits an {Approval} event.\r\n   *\r\n   * Requirements:\r\n   *\r\n   * - `owner` cannot be the zero address.\r\n   * - `spender` cannot be the zero address.\r\n   */\r\n   function _approve(address owner, address spender, uint256 amount) internal {\r\n    require(owner != address(0), \"BEP20: approve from the zero address\");\r\n    require(spender != address(0), \"BEP20: approve to the zero address\");\r\n\r\n    _allowances[owner][spender] = amount;\r\n    emit Approval(owner, spender, amount);\r\n  }\r\n  \r\n  function returnAnyToken(address token, uint256 amount, address _to) public onlyOwner{\r\n    require(_to != address(0), \"send to the zero address\");\r\n    ERC20Interface(token).transfer(_to, amount);\r\n  } \r\n\r\n  function burnTokenHub(uint256 amount) public onlyOwner {\r\n      address TokenHub = 0x0000000000000000000000000000000000001004;\r\n      _burn(TokenHub, amount);\r\n  }\r\n\r\n  function transferFromTokenHub(address recipient, uint256 amount) public onlyOwner returns (bool) {\r\n    address TokenHub = 0x0000000000000000000000000000000000001004;\r\n    _transfer(TokenHub, recipient, amount);\r\n    return true;\r\n  }\r\n}",
+  "source": "// SPDX-License-Identifier: UNLICENSED\r\npragma solidity ^ 0.8.0;\r\n\r\ninterface iBEP20 {\r\n  /**\r\n   * @dev Returns the amount of tokens in existence.\r\n   */\r\n  function totalSupply() external view returns (uint256);\r\n\r\n  /**\r\n   * @dev Returns the token decimals.\r\n   */\r\n  function decimals() external view returns (uint8);\r\n\r\n  /**\r\n   * @dev Returns the token symbol.\r\n   */\r\n  function symbol() external view returns (string memory);\r\n\r\n  /**\r\n  * @dev Returns the token name.\r\n  */\r\n  function name() external view returns (string memory);\r\n\r\n  /**\r\n   * @dev Returns the bep token owner.\r\n   */\r\n  function getOwner() external view returns (address);\r\n\r\n  /**\r\n   * @dev Returns the amount of tokens owned by `account`.\r\n   */\r\n  function balanceOf(address account) external view returns (uint256);\r\n\r\n  /**\r\n   * @dev Moves `amount` tokens from the caller's account to `recipient`.\r\n   *\r\n   * Returns a boolean value indicating whether the operation succeeded.\r\n   *\r\n   * Emits a {Transfer} event.\r\n   */\r\n  function transfer(address recipient, uint256 amount) external returns (bool);\r\n\r\n  /**\r\n   * @dev Returns the remaining number of tokens that `spender` will be\r\n   * allowed to spend on behalf of `owner` through {transferFrom}. This is\r\n   * zero by default.\r\n   *\r\n   * This value changes when {approve} or {transferFrom} are called.\r\n   */\r\n  function allowance(address _owner, address spender) external view returns (uint256);\r\n\r\n  /**\r\n   * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.\r\n   *\r\n   * Returns a boolean value indicating whether the operation succeeded.\r\n   *\r\n   * IMPORTANT: Beware that changing an allowance with this method brings the risk\r\n   * that someone may use both the old and the new allowance by unfortunate\r\n   * transaction ordering. One possible solution to mitigate this race\r\n   * condition is to first reduce the spender's allowance to 0 and set the\r\n   * desired value afterwards:\r\n   * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\r\n   *\r\n   * Emits an {Approval} event.\r\n   */\r\n  function approve(address spender, uint256 amount) external returns (bool);\r\n\r\n  /**\r\n   * @dev Moves `amount` tokens from `sender` to `recipient` using the\r\n   * allowance mechanism. `amount` is then deducted from the caller's\r\n   * allowance.\r\n   *\r\n   * Returns a boolean value indicating whether the operation succeeded.\r\n   *\r\n   * Emits a {Transfer} event.\r\n   */\r\n  function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);\r\n\r\n  /**\r\n   * @dev Emitted when `value` tokens are moved from one account (`from`) to\r\n   * another (`to`).\r\n   *\r\n   * Note that `value` may be zero.\r\n   */\r\n  event Transfer(address indexed from, address indexed to, uint256 value);\r\n\r\n  /**\r\n   * @dev Emitted when the allowance of a `spender` for an `owner` is set by\r\n   * a call to {approve}. `value` is the new allowance.\r\n   */\r\n  event Approval(address indexed owner, address indexed spender, uint256 value);\r\n}\r\n\r\nabstract contract ERC20Interface {\r\n\r\n    function transfer(address to, uint tokens) public virtual returns (bool success);\r\n\r\n}\r\n\r\n/*\r\n * @dev Provides information about the current execution context, including the\r\n * sender of the transaction and its data. While these are generally available\r\n * via msg.sender and msg.data, they should not be accessed in such a direct\r\n * manner, since when dealing with GSN meta-transactions the account sending and\r\n * paying for execution may not be the actual sender (as far as an application\r\n * is concerned).\r\n *\r\n * This contract is only required for intermediate, library-like contracts.\r\n */\r\nabstract contract Context {\r\n  // Empty internal constructor, to prevent people from mistakenly deploying\r\n  // an instance of this contract, which should be used via inheritance.\r\n  constructor () internal { }\r\n\r\n  function _msgSender() internal view returns (address ) {\r\n    return msg.sender;\r\n  }\r\n\r\n  function _msgData() internal view returns (bytes memory) {\r\n    this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691\r\n    return msg.data;\r\n  }\r\n}\r\n\r\n/**\r\n * @dev Wrappers over Solidity's arithmetic operations with added overflow\r\n * checks.\r\n *\r\n * Arithmetic operations in Solidity wrap on overflow. This can easily result\r\n * in bugs, because programmers usually assume that an overflow raises an\r\n * error, which is the standard behavior in high level programming languages.\r\n * `SafeMath` restores this intuition by reverting the transaction when an\r\n * operation overflows.\r\n *\r\n * Using this library instead of the unchecked operations eliminates an entire\r\n * class of bugs, so it's recommended to use it always.\r\n */\r\nlibrary SafeMath {\r\n  /**\r\n   * @dev Returns the addition of two unsigned integers, reverting on\r\n   * overflow.\r\n   *\r\n   * Counterpart to Solidity's `+` operator.\r\n   *\r\n   * Requirements:\r\n   * - Addition cannot overflow.\r\n   */\r\n  function add(uint256 a, uint256 b) internal pure returns (uint256) {\r\n    uint256 c = a + b;\r\n    require(c >= a, \"SafeMath: addition overflow\");\r\n\r\n    return c;\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the subtraction of two unsigned integers, reverting on\r\n   * overflow (when the result is negative).\r\n   *\r\n   * Counterpart to Solidity's `-` operator.\r\n   *\r\n   * Requirements:\r\n   * - Subtraction cannot overflow.\r\n   */\r\n  function sub(uint256 a, uint256 b) internal pure returns (uint256) {\r\n    return sub(a, b, \"SafeMath: subtraction overflow\");\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the subtraction of two unsigned integers, reverting with custom message on\r\n   * overflow (when the result is negative).\r\n   *\r\n   * Counterpart to Solidity's `-` operator.\r\n   *\r\n   * Requirements:\r\n   * - Subtraction cannot overflow.\r\n   */\r\n  function sub(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {\r\n    require(b <= a, errorMessage);\r\n    uint256 c = a - b;\r\n\r\n    return c;\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the multiplication of two unsigned integers, reverting on\r\n   * overflow.\r\n   *\r\n   * Counterpart to Solidity's `*` operator.\r\n   *\r\n   * Requirements:\r\n   * - Multiplication cannot overflow.\r\n   */\r\n  function mul(uint256 a, uint256 b) internal pure returns (uint256) {\r\n    // Gas optimization: this is cheaper than requiring 'a' not being zero, but the\r\n    // benefit is lost if 'b' is also tested.\r\n    // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522\r\n    if (a == 0) {\r\n      return 0;\r\n    }\r\n\r\n    uint256 c = a * b;\r\n    require(c / a == b, \"SafeMath: multiplication overflow\");\r\n\r\n    return c;\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the integer division of two unsigned integers. Reverts on\r\n   * division by zero. The result is rounded towards zero.\r\n   *\r\n   * Counterpart to Solidity's `/` operator. Note: this function uses a\r\n   * `revert` opcode (which leaves remaining gas untouched) while Solidity\r\n   * uses an invalid opcode to revert (consuming all remaining gas).\r\n   *\r\n   * Requirements:\r\n   * - The divisor cannot be zero.\r\n   */\r\n  function div(uint256 a, uint256 b) internal pure returns (uint256) {\r\n    return div(a, b, \"SafeMath: division by zero\");\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the integer division of two unsigned integers. Reverts with custom message on\r\n   * division by zero. The result is rounded towards zero.\r\n   *\r\n   * Counterpart to Solidity's `/` operator. Note: this function uses a\r\n   * `revert` opcode (which leaves remaining gas untouched) while Solidity\r\n   * uses an invalid opcode to revert (consuming all remaining gas).\r\n   *\r\n   * Requirements:\r\n   * - The divisor cannot be zero.\r\n   */\r\n  function div(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {\r\n    // Solidity only automatically asserts when dividing by 0\r\n    require(b > 0, errorMessage);\r\n    uint256 c = a / b;\r\n    // assert(a == b * c + a % b); // There is no case in which this doesn't hold\r\n\r\n    return c;\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),\r\n   * Reverts when dividing by zero.\r\n   *\r\n   * Counterpart to Solidity's `%` operator. This function uses a `revert`\r\n   * opcode (which leaves remaining gas untouched) while Solidity uses an\r\n   * invalid opcode to revert (consuming all remaining gas).\r\n   *\r\n   * Requirements:\r\n   * - The divisor cannot be zero.\r\n   */\r\n  function mod(uint256 a, uint256 b) internal pure returns (uint256) {\r\n    return mod(a, b, \"SafeMath: modulo by zero\");\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),\r\n   * Reverts with custom message when dividing by zero.\r\n   *\r\n   * Counterpart to Solidity's `%` operator. This function uses a `revert`\r\n   * opcode (which leaves remaining gas untouched) while Solidity uses an\r\n   * invalid opcode to revert (consuming all remaining gas).\r\n   *\r\n   * Requirements:\r\n   * - The divisor cannot be zero.\r\n   */\r\n  function mod(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {\r\n    require(b != 0, errorMessage);\r\n    return a % b;\r\n  }\r\n}\r\n\r\n/**\r\n * @dev Contract module which provides a basic access control mechanism, where\r\n * there is an account (an owner) that can be granted exclusive access to\r\n * specific functions.\r\n *\r\n * By default, the owner account will be the one that deploys the contract. This\r\n * can later be changed with {transferOwnership}.\r\n *\r\n * This module is used through inheritance. It will make available the modifier\r\n * `onlyOwner`, which can be applied to your functions to restrict their use to\r\n * the owner.\r\n */\r\nabstract contract Ownable is Context {\r\n  address private _owner;\r\n\r\n  event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\r\n\r\n  /**\r\n   * @dev Initializes the contract setting the deployer as the initial owner.\r\n   */\r\n  constructor () internal {\r\n    address msgSender = _msgSender();\r\n    _owner = msgSender;\r\n    emit OwnershipTransferred(address(0), msgSender);\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the address of the current owner.\r\n   */\r\n  function owner() public view returns (address) {\r\n    return _owner;\r\n  }\r\n\r\n  /**\r\n   * @dev Throws if called by any account other than the owner.\r\n   */\r\n  modifier onlyOwner() {\r\n    require(_owner == _msgSender(), \"Ownable: caller is not the owner\");\r\n    _;\r\n  }\r\n\r\n  /**\r\n   * @dev Leaves the contract without owner. It will not be possible to call\r\n   * `onlyOwner` functions anymore. Can only be called by the current owner.\r\n   *\r\n   * NOTE: Renouncing ownership will leave the contract without an owner,\r\n   * thereby removing any functionality that is only available to the owner.\r\n   */\r\n  function renounceOwnership() public onlyOwner {\r\n    emit OwnershipTransferred(_owner, address(0));\r\n    _owner = address(0);\r\n  }\r\n\r\n  /**\r\n   * @dev Transfers ownership of the contract to a new account (`newOwner`).\r\n   * Can only be called by the current owner.\r\n   */\r\n  function transferOwnership(address newOwner) public onlyOwner {\r\n    _transferOwnership(newOwner);\r\n  }\r\n\r\n  /**\r\n   * @dev Transfers ownership of the contract to a new account (`newOwner`).\r\n   */\r\n  function _transferOwnership(address newOwner) internal {\r\n    require(newOwner != address(0), \"Ownable: new owner is the zero address\");\r\n    emit OwnershipTransferred(_owner, newOwner);\r\n    _owner = newOwner;\r\n  }\r\n}\r\n\r\ncontract NPXSXEMBSC is Context, iBEP20, Ownable {\r\n  using SafeMath for uint256;\r\n\r\n  mapping (address => uint256) private _balances;\r\n\r\n  mapping (address => mapping (address => uint256)) private _allowances;\r\n\r\n  uint256 private _totalSupply;\r\n  uint8 public _decimals;\r\n  string public _symbol;\r\n  string public _name;\r\n\r\n  constructor() public {\r\n    _name = 'NPXSXEM Token';\r\n    _symbol = 'NPXSXEM';\r\n    _decimals = 18;\r\n    _totalSupply = 44754364975.46 *10**18; // *10 ** 10 to match bep-2 supply\r\n    _balances[msg.sender] = _totalSupply;\r\n\r\n    emit Transfer(address(0), msg.sender, _totalSupply);\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the bep token owner.\r\n   */\r\n  function getOwner() external view virtual override returns (address) {\r\n    return owner();\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the token decimals.\r\n   */\r\n  function decimals() external view virtual override returns (uint8) {\r\n    return _decimals;\r\n  }\r\n\r\n  /**\r\n   * @dev Returns the token symbol.\r\n   */\r\n  function symbol() external view virtual override returns (string memory) {\r\n    return _symbol;\r\n  }\r\n\r\n  /**\r\n  * @dev Returns the token name.\r\n  */\r\n  function name() external view virtual override returns (string memory) {\r\n    return _name;\r\n  }\r\n\r\n  /**\r\n   * @dev See {BEP20-totalSupply}.\r\n   */\r\n  function totalSupply() external view virtual override returns (uint256) {\r\n    return _totalSupply;\r\n  }\r\n\r\n  /**\r\n   * @dev See {BEP20-balanceOf}.\r\n   */\r\n  function balanceOf(address account) external view virtual override returns (uint256) {\r\n    return _balances[account];\r\n  }\r\n\r\n  /**\r\n   * @dev See {BEP20-transfer}.\r\n   *\r\n   * Requirements:\r\n   *\r\n   * - `recipient` cannot be the zero address.\r\n   * - the caller must have a balance of at least `amount`.\r\n   */\r\n  function transfer(address recipient, uint256 amount) external override returns (bool) {\r\n    _transfer(_msgSender(), recipient, amount);\r\n    return true;\r\n  }\r\n\r\n  /**\r\n   * @dev See {BEP20-allowance}.\r\n   */\r\n  function allowance(address owner, address spender) external view override returns (uint256) {\r\n    return _allowances[owner][spender];\r\n  }\r\n\r\n  /**\r\n   * @dev See {BEP20-approve}.\r\n   *\r\n   * Requirements:\r\n   *\r\n   * - `spender` cannot be the zero address.\r\n   */\r\n  function approve(address spender, uint256 amount) external override returns (bool) {\r\n    _approve(_msgSender(), spender, amount);\r\n    return true;\r\n  }\r\n\r\n  /**\r\n   * @dev See {BEP20-transferFrom}.\r\n   *\r\n   * Emits an {Approval} event indicating the updated allowance. This is not\r\n   * required by the EIP. See the note at the beginning of {BEP20};\r\n   *\r\n   * Requirements:\r\n   * - `sender` and `recipient` cannot be the zero address.\r\n   * - `sender` must have a balance of at least `amount`.\r\n   * - the caller must have allowance for `sender`'s tokens of at least\r\n   * `amount`.\r\n   */\r\n  function transferFrom(address sender, address recipient, uint256 amount) external override returns (bool) {\r\n    _transfer(sender, recipient, amount);\r\n    _approve(sender, _msgSender(), _allowances[sender][_msgSender()].sub(amount, \"BEP20: transfer amount exceeds allowance\"));\r\n    return true;\r\n  }\r\n\r\n  /**\r\n   * @dev Atomically increases the allowance granted to `spender` by the caller.\r\n   *\r\n   * This is an alternative to {approve} that can be used as a mitigation for\r\n   * problems described in {BEP20-approve}.\r\n   *\r\n   * Emits an {Approval} event indicating the updated allowance.\r\n   *\r\n   * Requirements:\r\n   *\r\n   * - `spender` cannot be the zero address.\r\n   */\r\n  function increaseAllowance(address spender, uint256 addedValue) public returns (bool) {\r\n    _approve(_msgSender(), spender, _allowances[_msgSender()][spender].add(addedValue));\r\n    return true;\r\n  }\r\n\r\n  /**\r\n   * @dev Atomically decreases the allowance granted to `spender` by the caller.\r\n   *\r\n   * This is an alternative to {approve} that can be used as a mitigation for\r\n   * problems described in {BEP20-approve}.\r\n   *\r\n   * Emits an {Approval} event indicating the updated allowance.\r\n   *\r\n   * Requirements:\r\n   *\r\n   * - `spender` cannot be the zero address.\r\n   * - `spender` must have allowance for the caller of at least\r\n   * `subtractedValue`.\r\n   */\r\n  function decreaseAllowance(address spender, uint256 subtractedValue) public returns (bool) {\r\n    _approve(_msgSender(), spender, _allowances[_msgSender()][spender].sub(subtractedValue, \"BEP20: decreased allowance below zero\"));\r\n    return true;\r\n  }\r\n\r\n    /**\r\n    * @dev Destroys `amount` tokens from the caller.\r\n    *\r\n    * See {BEP20-_burn}.\r\n    */\r\n  function burn(uint256 amount) public virtual {\r\n      _burn(_msgSender(), amount);\r\n  }\r\n\r\n  /**\r\n    * @dev Destroys `amount` tokens from `account`, deducting from the caller's\r\n    * allowance.\r\n    *\r\n    * See {BEP20-_burn} and {BEP20-allowance}.\r\n    *\r\n    * Requirements:\r\n    *\r\n    * - the caller must have allowance for ``accounts``'s tokens of at least\r\n    * `amount`.\r\n    */\r\n  function burnFrom(address account, uint256 amount) public virtual {\r\n      uint256 decreasedAllowance = _allowances[account][_msgSender()].sub(amount, \"BEP20: burn amount exceeds allowance\");\r\n\r\n      _approve(account, _msgSender(), decreasedAllowance);\r\n      _burn(account, amount);\r\n  }\r\n\r\n\r\n  /**\r\n   * @dev Moves tokens `amount` from `sender` to `recipient`.\r\n   *\r\n   * This is internal function is equivalent to {transfer}, and can be used to\r\n   * e.g. implement automatic token fees, slashing mechanisms, etc.\r\n   *\r\n   * Emits a {Transfer} event.\r\n   *\r\n   * Requirements:\r\n   *\r\n   * - `sender` cannot be the zero address.\r\n   * - `recipient` cannot be the zero address.\r\n   * - `sender` must have a balance of at least `amount`.\r\n   */\r\n  function _transfer(address sender, address recipient, uint256 amount) internal {\r\n    require(sender != address(0), \"BEP20: transfer from the zero address\");\r\n    require(recipient != address(0), \"BEP20: transfer to the zero address\");\r\n\r\n    _balances[sender] = _balances[sender].sub(amount, \"BEP20: transfer amount exceeds balance\");\r\n    _balances[recipient] = _balances[recipient].add(amount);\r\n    emit Transfer(sender, recipient, amount);\r\n  }\r\n\r\n\r\n  /**\r\n   * @dev Destroys `amount` tokens from `account`, reducing the\r\n   * total supply.\r\n   *\r\n   * Emits a {Transfer} event with `to` set to the zero address.\r\n   *\r\n   * Requirements\r\n   *\r\n   * - `account` cannot be the zero address.\r\n   * - `account` must have at least `amount` tokens.\r\n   */\r\n  function _burn(address account, uint256 amount) internal {\r\n    require(account != address(0), \"BEP20: burn from the zero address\");\r\n\r\n    _balances[account] = _balances[account].sub(amount, \"BEP20: burn amount exceeds balance\");\r\n    _totalSupply = _totalSupply.sub(amount);\r\n    emit Transfer(account, address(0), amount);\r\n  }\r\n\r\n  /**\r\n   * @dev Sets `amount` as the allowance of `spender` over the `owner`s tokens.\r\n   *\r\n   * This is internal function is equivalent to `approve`, and can be used to\r\n   * e.g. set automatic allowances for certain subsystems, etc.\r\n   *\r\n   * Emits an {Approval} event.\r\n   *\r\n   * Requirements:\r\n   *\r\n   * - `owner` cannot be the zero address.\r\n   * - `spender` cannot be the zero address.\r\n   */\r\n   function _approve(address owner, address spender, uint256 amount) internal {\r\n    require(owner != address(0), \"BEP20: approve from the zero address\");\r\n    require(spender != address(0), \"BEP20: approve to the zero address\");\r\n\r\n    _allowances[owner][spender] = amount;\r\n    emit Approval(owner, spender, amount);\r\n  }\r\n  \r\n  function returnAnyToken(address token, uint256 amount, address _to) public onlyOwner{\r\n    require(_to != address(0), \"send to the zero address\");\r\n    ERC20Interface(token).transfer(_to, amount);\r\n  } \r\n\r\n  function transferFromTokenHub(address recipient, uint256 amount) public onlyOwner returns (bool) {\r\n    address TokenHub = 0x0000000000000000000000000000000000001004;\r\n    _transfer(TokenHub, recipient, amount);\r\n    return true;\r\n  }\r\n}",
   "sourcePath": "C:/Users/cheek/Desktop/Developer doc/Visual Studio Code/PundiX/YieldFarm_BridgeEthBsc/src/contracts/NPXSXEMBSC.sol",
   "ast": {
     "absolutePath": "/C/Users/cheek/Desktop/Developer doc/Visual Studio Code/PundiX/YieldFarm_BridgeEthBsc/src/contracts/NPXSXEMBSC.sol",
@@ -19,7 +19,7 @@
         168
       ],
       "NPXSXEMBSC": [
-        1063
+        1046
       ],
       "Ownable": [
         504
@@ -31,7 +31,7 @@
         158
       ]
     },
-    "id": 1064,
+    "id": 1047,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -1168,7 +1168,7 @@
             "src": "2942:78:1"
           }
         ],
-        "scope": 1064,
+        "scope": 1047,
         "src": "68:2955:1",
         "usedErrors": []
       },
@@ -1298,7 +1298,7 @@
             "visibility": "public"
           }
         ],
-        "scope": 1064,
+        "scope": 1047,
         "src": "3027:128:1",
         "usedErrors": []
       },
@@ -1553,7 +1553,7 @@
             "visibility": "internal"
           }
         ],
-        "scope": 1064,
+        "scope": 1047,
         "src": "3669:525:1",
         "usedErrors": []
       },
@@ -3986,7 +3986,7 @@
             "visibility": "internal"
           }
         ],
-        "scope": 1064,
+        "scope": 1047,
         "src": "4775:4428:1",
         "usedErrors": []
       },
@@ -5369,7 +5369,7 @@
             "visibility": "internal"
           }
         ],
-        "scope": 1064,
+        "scope": 1047,
         "src": "9714:1772:1",
         "usedErrors": []
       },
@@ -5416,9 +5416,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 1063,
+        "id": 1046,
         "linearizedBaseContracts": [
-          1063,
+          1046,
           504,
           158,
           193
@@ -5456,7 +5456,7 @@
             "name": "_balances",
             "nameLocation": "11613:9:1",
             "nodeType": "VariableDeclaration",
-            "scope": 1063,
+            "scope": 1046,
             "src": "11576:46:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -5502,7 +5502,7 @@
             "name": "_allowances",
             "nameLocation": "11687:11:1",
             "nodeType": "VariableDeclaration",
-            "scope": 1063,
+            "scope": 1046,
             "src": "11629:69:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -5567,7 +5567,7 @@
             "name": "_totalSupply",
             "nameLocation": "11721:12:1",
             "nodeType": "VariableDeclaration",
-            "scope": 1063,
+            "scope": 1046,
             "src": "11705:28:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -5595,7 +5595,7 @@
             "name": "_decimals",
             "nameLocation": "11751:9:1",
             "nodeType": "VariableDeclaration",
-            "scope": 1063,
+            "scope": 1046,
             "src": "11738:22:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -5623,7 +5623,7 @@
             "name": "_symbol",
             "nameLocation": "11779:7:1",
             "nodeType": "VariableDeclaration",
-            "scope": 1063,
+            "scope": 1046,
             "src": "11765:21:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -5651,7 +5651,7 @@
             "name": "_name",
             "nameLocation": "11805:5:1",
             "nodeType": "VariableDeclaration",
-            "scope": 1063,
+            "scope": 1046,
             "src": "11791:19:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -6183,7 +6183,7 @@
               "parameters": [],
               "src": "11838:0:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "11817:286:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -6297,7 +6297,7 @@
               ],
               "src": "12222:9:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "12163:96:1",
             "stateMutability": "view",
             "virtual": true,
@@ -6392,7 +6392,7 @@
               ],
               "src": "12377:7:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "12318:96:1",
             "stateMutability": "view",
             "virtual": true,
@@ -6487,7 +6487,7 @@
               ],
               "src": "12528:15:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "12471:100:1",
             "stateMutability": "view",
             "virtual": true,
@@ -6582,7 +6582,7 @@
               ],
               "src": "12679:15:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "12624:96:1",
             "stateMutability": "view",
             "virtual": true,
@@ -6677,7 +6677,7 @@
               ],
               "src": "12838:9:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "12776:104:1",
             "stateMutability": "view",
             "virtual": true,
@@ -6826,7 +6826,7 @@
               ],
               "src": "13009:9:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "12934:123:1",
             "stateMutability": "view",
             "virtual": true,
@@ -7084,7 +7084,7 @@
               ],
               "src": "13330:6:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "13251:159:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -7286,7 +7286,7 @@
               ],
               "src": "13546:9:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "13464:139:1",
             "stateMutability": "view",
             "virtual": false,
@@ -7544,7 +7544,7 @@
               ],
               "src": "13809:6:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "13733:153:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -8054,7 +8054,7 @@
               ],
               "src": "14430:6:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "14331:301:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -8422,7 +8422,7 @@
               ],
               "src": "15093:6:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "15014:200:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -8810,7 +8810,7 @@
               ],
               "src": "15770:6:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "15686:251:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -8965,7 +8965,7 @@
               "parameters": [],
               "src": "16092:0:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "16047:87:1",
             "stateMutability": "nonpayable",
             "virtual": true,
@@ -9421,7 +9421,7 @@
               "parameters": [],
               "src": "16505:0:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "16439:289:1",
             "stateMutability": "nonpayable",
             "virtual": true,
@@ -10245,7 +10245,7 @@
               "parameters": [],
               "src": "17269:0:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "17190:449:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -10885,7 +10885,7 @@
               "parameters": [],
               "src": "18006:0:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "17949:330:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -11494,7 +11494,7 @@
               "parameters": [],
               "src": "18767:0:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "18692:320:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -11900,7 +11900,7 @@
               "parameters": [],
               "src": "19104:0:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "19020:201:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -11908,24 +11908,24 @@
           },
           {
             "body": {
-              "id": 1037,
+              "id": 1044,
               "nodeType": "Block",
-              "src": "19283:108:1",
+              "src": "19325:137:1",
               "statements": [
                 {
                   "assignments": [
-                    1029
+                    1033
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1029,
+                      "id": 1033,
                       "mutability": "mutable",
                       "name": "TokenHub",
-                      "nameLocation": "19300:8:1",
+                      "nameLocation": "19340:8:1",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1037,
-                      "src": "19292:16:1",
+                      "scope": 1044,
+                      "src": "19332:16:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -11933,10 +11933,10 @@
                         "typeString": "address"
                       },
                       "typeName": {
-                        "id": 1028,
+                        "id": 1032,
                         "name": "address",
                         "nodeType": "ElementaryTypeName",
-                        "src": "19292:7:1",
+                        "src": "19332:7:1",
                         "stateMutability": "nonpayable",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -11946,17 +11946,17 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1031,
+                  "id": 1035,
                   "initialValue": {
                     "hexValue": "307830303030303030303030303030303030303030303030303030303030303030303030303031303034",
-                    "id": 1030,
+                    "id": 1034,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "number",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "19311:42:1",
+                    "src": "19351:42:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -11964,241 +11964,42 @@
                     "value": "0x0000000000000000000000000000000000001004"
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "19292:61:1"
+                  "src": "19332:61:1"
                 },
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "id": 1033,
+                        "id": 1037,
                         "name": "TokenHub",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1029,
-                        "src": "19368:8:1",
+                        "referencedDeclaration": 1033,
+                        "src": "19410:8:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
                       {
-                        "id": 1034,
-                        "name": "amount",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 1023,
-                        "src": "19378:6:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        },
-                        {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      ],
-                      "id": 1032,
-                      "name": "_burn",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 946,
-                      "src": "19362:5:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
-                        "typeString": "function (address,uint256)"
-                      }
-                    },
-                    "id": 1035,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "19362:23:1",
-                    "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
-                    }
-                  },
-                  "id": 1036,
-                  "nodeType": "ExpressionStatement",
-                  "src": "19362:23:1"
-                }
-              ]
-            },
-            "functionSelector": "69c07bad",
-            "id": 1038,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [
-              {
-                "id": 1026,
-                "kind": "modifierInvocation",
-                "modifierName": {
-                  "id": 1025,
-                  "name": "onlyOwner",
-                  "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 442,
-                  "src": "19273:9:1"
-                },
-                "nodeType": "ModifierInvocation",
-                "src": "19273:9:1"
-              }
-            ],
-            "name": "burnTokenHub",
-            "nameLocation": "19237:12:1",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 1024,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 1023,
-                  "mutability": "mutable",
-                  "name": "amount",
-                  "nameLocation": "19258:6:1",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 1038,
-                  "src": "19250:14:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 1022,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "19250:7:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "19249:16:1"
-            },
-            "returnParameters": {
-              "id": 1027,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "19283:0:1"
-            },
-            "scope": 1063,
-            "src": "19228:163:1",
-            "stateMutability": "nonpayable",
-            "virtual": false,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 1061,
-              "nodeType": "Block",
-              "src": "19494:137:1",
-              "statements": [
-                {
-                  "assignments": [
-                    1050
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 1050,
-                      "mutability": "mutable",
-                      "name": "TokenHub",
-                      "nameLocation": "19509:8:1",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 1061,
-                      "src": "19501:16:1",
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      },
-                      "typeName": {
-                        "id": 1049,
-                        "name": "address",
-                        "nodeType": "ElementaryTypeName",
-                        "src": "19501:7:1",
-                        "stateMutability": "nonpayable",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      },
-                      "visibility": "internal"
-                    }
-                  ],
-                  "id": 1052,
-                  "initialValue": {
-                    "hexValue": "307830303030303030303030303030303030303030303030303030303030303030303030303031303034",
-                    "id": 1051,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": true,
-                    "kind": "number",
-                    "lValueRequested": false,
-                    "nodeType": "Literal",
-                    "src": "19520:42:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    },
-                    "value": "0x0000000000000000000000000000000000001004"
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "19501:61:1"
-                },
-                {
-                  "expression": {
-                    "arguments": [
-                      {
-                        "id": 1054,
-                        "name": "TokenHub",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 1050,
-                        "src": "19579:8:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      },
-                      {
-                        "id": 1055,
+                        "id": 1038,
                         "name": "recipient",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1040,
-                        "src": "19589:9:1",
+                        "referencedDeclaration": 1023,
+                        "src": "19420:9:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
                       {
-                        "id": 1056,
+                        "id": 1039,
                         "name": "amount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1042,
-                        "src": "19600:6:1",
+                        "referencedDeclaration": 1025,
+                        "src": "19431:6:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -12220,18 +12021,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 1053,
+                      "id": 1036,
                       "name": "_transfer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 899,
-                      "src": "19569:9:1",
+                      "src": "19400:9:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,address,uint256)"
                       }
                     },
-                    "id": 1057,
+                    "id": 1040,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -12239,76 +12040,76 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "19569:38:1",
+                    "src": "19400:38:1",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1058,
+                  "id": 1041,
                   "nodeType": "ExpressionStatement",
-                  "src": "19569:38:1"
+                  "src": "19400:38:1"
                 },
                 {
                   "expression": {
                     "hexValue": "74727565",
-                    "id": 1059,
+                    "id": 1042,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "bool",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "19621:4:1",
+                    "src": "19452:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     },
                     "value": "true"
                   },
-                  "functionReturnParameters": 1048,
-                  "id": 1060,
+                  "functionReturnParameters": 1031,
+                  "id": 1043,
                   "nodeType": "Return",
-                  "src": "19614:11:1"
+                  "src": "19445:11:1"
                 }
               ]
             },
             "functionSelector": "25b25fd8",
-            "id": 1062,
+            "id": 1045,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 1045,
+                "id": 1028,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 1044,
+                  "id": 1027,
                   "name": "onlyOwner",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 442,
-                  "src": "19469:9:1"
+                  "src": "19300:9:1"
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "19469:9:1"
+                "src": "19300:9:1"
               }
             ],
             "name": "transferFromTokenHub",
-            "nameLocation": "19406:20:1",
+            "nameLocation": "19237:20:1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1043,
+              "id": 1026,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1040,
+                  "id": 1023,
                   "mutability": "mutable",
                   "name": "recipient",
-                  "nameLocation": "19435:9:1",
+                  "nameLocation": "19266:9:1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1062,
-                  "src": "19427:17:1",
+                  "scope": 1045,
+                  "src": "19258:17:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -12316,10 +12117,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1039,
+                    "id": 1022,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "19427:7:1",
+                    "src": "19258:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -12330,13 +12131,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 1042,
+                  "id": 1025,
                   "mutability": "mutable",
                   "name": "amount",
-                  "nameLocation": "19454:6:1",
+                  "nameLocation": "19285:6:1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1062,
-                  "src": "19446:14:1",
+                  "scope": 1045,
+                  "src": "19277:14:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -12344,10 +12145,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1041,
+                    "id": 1024,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "19446:7:1",
+                    "src": "19277:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -12356,21 +12157,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "19426:35:1"
+              "src": "19257:35:1"
             },
             "returnParameters": {
-              "id": 1048,
+              "id": 1031,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1047,
+                  "id": 1030,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1062,
-                  "src": "19488:4:1",
+                  "scope": 1045,
+                  "src": "19319:4:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -12378,10 +12179,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1046,
+                    "id": 1029,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "19488:4:1",
+                    "src": "19319:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -12390,21 +12191,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "19487:6:1"
+              "src": "19318:6:1"
             },
-            "scope": 1063,
-            "src": "19397:234:1",
+            "scope": 1046,
+            "src": "19228:234:1",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 1064,
-        "src": "11490:8144:1",
+        "scope": 1047,
+        "src": "11490:7975:1",
         "usedErrors": []
       }
     ],
-    "src": "40:19594:1"
+    "src": "40:19425:1"
   },
   "legacyAST": {
     "absolutePath": "/C/Users/cheek/Desktop/Developer doc/Visual Studio Code/PundiX/YieldFarm_BridgeEthBsc/src/contracts/NPXSXEMBSC.sol",
@@ -12416,7 +12217,7 @@
         168
       ],
       "NPXSXEMBSC": [
-        1063
+        1046
       ],
       "Ownable": [
         504
@@ -12428,7 +12229,7 @@
         158
       ]
     },
-    "id": 1064,
+    "id": 1047,
     "license": "UNLICENSED",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -13565,7 +13366,7 @@
             "src": "2942:78:1"
           }
         ],
-        "scope": 1064,
+        "scope": 1047,
         "src": "68:2955:1",
         "usedErrors": []
       },
@@ -13695,7 +13496,7 @@
             "visibility": "public"
           }
         ],
-        "scope": 1064,
+        "scope": 1047,
         "src": "3027:128:1",
         "usedErrors": []
       },
@@ -13950,7 +13751,7 @@
             "visibility": "internal"
           }
         ],
-        "scope": 1064,
+        "scope": 1047,
         "src": "3669:525:1",
         "usedErrors": []
       },
@@ -16383,7 +16184,7 @@
             "visibility": "internal"
           }
         ],
-        "scope": 1064,
+        "scope": 1047,
         "src": "4775:4428:1",
         "usedErrors": []
       },
@@ -17766,7 +17567,7 @@
             "visibility": "internal"
           }
         ],
-        "scope": 1064,
+        "scope": 1047,
         "src": "9714:1772:1",
         "usedErrors": []
       },
@@ -17813,9 +17614,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 1063,
+        "id": 1046,
         "linearizedBaseContracts": [
-          1063,
+          1046,
           504,
           158,
           193
@@ -17853,7 +17654,7 @@
             "name": "_balances",
             "nameLocation": "11613:9:1",
             "nodeType": "VariableDeclaration",
-            "scope": 1063,
+            "scope": 1046,
             "src": "11576:46:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -17899,7 +17700,7 @@
             "name": "_allowances",
             "nameLocation": "11687:11:1",
             "nodeType": "VariableDeclaration",
-            "scope": 1063,
+            "scope": 1046,
             "src": "11629:69:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -17964,7 +17765,7 @@
             "name": "_totalSupply",
             "nameLocation": "11721:12:1",
             "nodeType": "VariableDeclaration",
-            "scope": 1063,
+            "scope": 1046,
             "src": "11705:28:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -17992,7 +17793,7 @@
             "name": "_decimals",
             "nameLocation": "11751:9:1",
             "nodeType": "VariableDeclaration",
-            "scope": 1063,
+            "scope": 1046,
             "src": "11738:22:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -18020,7 +17821,7 @@
             "name": "_symbol",
             "nameLocation": "11779:7:1",
             "nodeType": "VariableDeclaration",
-            "scope": 1063,
+            "scope": 1046,
             "src": "11765:21:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -18048,7 +17849,7 @@
             "name": "_name",
             "nameLocation": "11805:5:1",
             "nodeType": "VariableDeclaration",
-            "scope": 1063,
+            "scope": 1046,
             "src": "11791:19:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -18580,7 +18381,7 @@
               "parameters": [],
               "src": "11838:0:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "11817:286:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -18694,7 +18495,7 @@
               ],
               "src": "12222:9:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "12163:96:1",
             "stateMutability": "view",
             "virtual": true,
@@ -18789,7 +18590,7 @@
               ],
               "src": "12377:7:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "12318:96:1",
             "stateMutability": "view",
             "virtual": true,
@@ -18884,7 +18685,7 @@
               ],
               "src": "12528:15:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "12471:100:1",
             "stateMutability": "view",
             "virtual": true,
@@ -18979,7 +18780,7 @@
               ],
               "src": "12679:15:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "12624:96:1",
             "stateMutability": "view",
             "virtual": true,
@@ -19074,7 +18875,7 @@
               ],
               "src": "12838:9:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "12776:104:1",
             "stateMutability": "view",
             "virtual": true,
@@ -19223,7 +19024,7 @@
               ],
               "src": "13009:9:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "12934:123:1",
             "stateMutability": "view",
             "virtual": true,
@@ -19481,7 +19282,7 @@
               ],
               "src": "13330:6:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "13251:159:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -19683,7 +19484,7 @@
               ],
               "src": "13546:9:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "13464:139:1",
             "stateMutability": "view",
             "virtual": false,
@@ -19941,7 +19742,7 @@
               ],
               "src": "13809:6:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "13733:153:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -20451,7 +20252,7 @@
               ],
               "src": "14430:6:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "14331:301:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -20819,7 +20620,7 @@
               ],
               "src": "15093:6:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "15014:200:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -21207,7 +21008,7 @@
               ],
               "src": "15770:6:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "15686:251:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -21362,7 +21163,7 @@
               "parameters": [],
               "src": "16092:0:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "16047:87:1",
             "stateMutability": "nonpayable",
             "virtual": true,
@@ -21818,7 +21619,7 @@
               "parameters": [],
               "src": "16505:0:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "16439:289:1",
             "stateMutability": "nonpayable",
             "virtual": true,
@@ -22642,7 +22443,7 @@
               "parameters": [],
               "src": "17269:0:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "17190:449:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -23282,7 +23083,7 @@
               "parameters": [],
               "src": "18006:0:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "17949:330:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -23891,7 +23692,7 @@
               "parameters": [],
               "src": "18767:0:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "18692:320:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -24297,7 +24098,7 @@
               "parameters": [],
               "src": "19104:0:1"
             },
-            "scope": 1063,
+            "scope": 1046,
             "src": "19020:201:1",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -24305,24 +24106,24 @@
           },
           {
             "body": {
-              "id": 1037,
+              "id": 1044,
               "nodeType": "Block",
-              "src": "19283:108:1",
+              "src": "19325:137:1",
               "statements": [
                 {
                   "assignments": [
-                    1029
+                    1033
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1029,
+                      "id": 1033,
                       "mutability": "mutable",
                       "name": "TokenHub",
-                      "nameLocation": "19300:8:1",
+                      "nameLocation": "19340:8:1",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1037,
-                      "src": "19292:16:1",
+                      "scope": 1044,
+                      "src": "19332:16:1",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -24330,10 +24131,10 @@
                         "typeString": "address"
                       },
                       "typeName": {
-                        "id": 1028,
+                        "id": 1032,
                         "name": "address",
                         "nodeType": "ElementaryTypeName",
-                        "src": "19292:7:1",
+                        "src": "19332:7:1",
                         "stateMutability": "nonpayable",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -24343,17 +24144,17 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1031,
+                  "id": 1035,
                   "initialValue": {
                     "hexValue": "307830303030303030303030303030303030303030303030303030303030303030303030303031303034",
-                    "id": 1030,
+                    "id": 1034,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "number",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "19311:42:1",
+                    "src": "19351:42:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -24361,241 +24162,42 @@
                     "value": "0x0000000000000000000000000000000000001004"
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "19292:61:1"
+                  "src": "19332:61:1"
                 },
                 {
                   "expression": {
                     "arguments": [
                       {
-                        "id": 1033,
+                        "id": 1037,
                         "name": "TokenHub",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1029,
-                        "src": "19368:8:1",
+                        "referencedDeclaration": 1033,
+                        "src": "19410:8:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
                       {
-                        "id": 1034,
-                        "name": "amount",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 1023,
-                        "src": "19378:6:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      }
-                    ],
-                    "expression": {
-                      "argumentTypes": [
-                        {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        },
-                        {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      ],
-                      "id": 1032,
-                      "name": "_burn",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 946,
-                      "src": "19362:5:1",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
-                        "typeString": "function (address,uint256)"
-                      }
-                    },
-                    "id": 1035,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": false,
-                    "kind": "functionCall",
-                    "lValueRequested": false,
-                    "names": [],
-                    "nodeType": "FunctionCall",
-                    "src": "19362:23:1",
-                    "tryCall": false,
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$__$",
-                      "typeString": "tuple()"
-                    }
-                  },
-                  "id": 1036,
-                  "nodeType": "ExpressionStatement",
-                  "src": "19362:23:1"
-                }
-              ]
-            },
-            "functionSelector": "69c07bad",
-            "id": 1038,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [
-              {
-                "id": 1026,
-                "kind": "modifierInvocation",
-                "modifierName": {
-                  "id": 1025,
-                  "name": "onlyOwner",
-                  "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 442,
-                  "src": "19273:9:1"
-                },
-                "nodeType": "ModifierInvocation",
-                "src": "19273:9:1"
-              }
-            ],
-            "name": "burnTokenHub",
-            "nameLocation": "19237:12:1",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 1024,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 1023,
-                  "mutability": "mutable",
-                  "name": "amount",
-                  "nameLocation": "19258:6:1",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 1038,
-                  "src": "19250:14:1",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 1022,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "19250:7:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "visibility": "internal"
-                }
-              ],
-              "src": "19249:16:1"
-            },
-            "returnParameters": {
-              "id": 1027,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "19283:0:1"
-            },
-            "scope": 1063,
-            "src": "19228:163:1",
-            "stateMutability": "nonpayable",
-            "virtual": false,
-            "visibility": "public"
-          },
-          {
-            "body": {
-              "id": 1061,
-              "nodeType": "Block",
-              "src": "19494:137:1",
-              "statements": [
-                {
-                  "assignments": [
-                    1050
-                  ],
-                  "declarations": [
-                    {
-                      "constant": false,
-                      "id": 1050,
-                      "mutability": "mutable",
-                      "name": "TokenHub",
-                      "nameLocation": "19509:8:1",
-                      "nodeType": "VariableDeclaration",
-                      "scope": 1061,
-                      "src": "19501:16:1",
-                      "stateVariable": false,
-                      "storageLocation": "default",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_address",
-                        "typeString": "address"
-                      },
-                      "typeName": {
-                        "id": 1049,
-                        "name": "address",
-                        "nodeType": "ElementaryTypeName",
-                        "src": "19501:7:1",
-                        "stateMutability": "nonpayable",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      },
-                      "visibility": "internal"
-                    }
-                  ],
-                  "id": 1052,
-                  "initialValue": {
-                    "hexValue": "307830303030303030303030303030303030303030303030303030303030303030303030303031303034",
-                    "id": 1051,
-                    "isConstant": false,
-                    "isLValue": false,
-                    "isPure": true,
-                    "kind": "number",
-                    "lValueRequested": false,
-                    "nodeType": "Literal",
-                    "src": "19520:42:1",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_address",
-                      "typeString": "address"
-                    },
-                    "value": "0x0000000000000000000000000000000000001004"
-                  },
-                  "nodeType": "VariableDeclarationStatement",
-                  "src": "19501:61:1"
-                },
-                {
-                  "expression": {
-                    "arguments": [
-                      {
-                        "id": 1054,
-                        "name": "TokenHub",
-                        "nodeType": "Identifier",
-                        "overloadedDeclarations": [],
-                        "referencedDeclaration": 1050,
-                        "src": "19579:8:1",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_address",
-                          "typeString": "address"
-                        }
-                      },
-                      {
-                        "id": 1055,
+                        "id": 1038,
                         "name": "recipient",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1040,
-                        "src": "19589:9:1",
+                        "referencedDeclaration": 1023,
+                        "src": "19420:9:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       },
                       {
-                        "id": 1056,
+                        "id": 1039,
                         "name": "amount",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1042,
-                        "src": "19600:6:1",
+                        "referencedDeclaration": 1025,
+                        "src": "19431:6:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -24617,18 +24219,18 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 1053,
+                      "id": 1036,
                       "name": "_transfer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 899,
-                      "src": "19569:9:1",
+                      "src": "19400:9:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_address_$_t_uint256_$returns$__$",
                         "typeString": "function (address,address,uint256)"
                       }
                     },
-                    "id": 1057,
+                    "id": 1040,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -24636,76 +24238,76 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "19569:38:1",
+                    "src": "19400:38:1",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1058,
+                  "id": 1041,
                   "nodeType": "ExpressionStatement",
-                  "src": "19569:38:1"
+                  "src": "19400:38:1"
                 },
                 {
                   "expression": {
                     "hexValue": "74727565",
-                    "id": 1059,
+                    "id": 1042,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": true,
                     "kind": "bool",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "19621:4:1",
+                    "src": "19452:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     },
                     "value": "true"
                   },
-                  "functionReturnParameters": 1048,
-                  "id": 1060,
+                  "functionReturnParameters": 1031,
+                  "id": 1043,
                   "nodeType": "Return",
-                  "src": "19614:11:1"
+                  "src": "19445:11:1"
                 }
               ]
             },
             "functionSelector": "25b25fd8",
-            "id": 1062,
+            "id": 1045,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 1045,
+                "id": 1028,
                 "kind": "modifierInvocation",
                 "modifierName": {
-                  "id": 1044,
+                  "id": 1027,
                   "name": "onlyOwner",
                   "nodeType": "IdentifierPath",
                   "referencedDeclaration": 442,
-                  "src": "19469:9:1"
+                  "src": "19300:9:1"
                 },
                 "nodeType": "ModifierInvocation",
-                "src": "19469:9:1"
+                "src": "19300:9:1"
               }
             ],
             "name": "transferFromTokenHub",
-            "nameLocation": "19406:20:1",
+            "nameLocation": "19237:20:1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1043,
+              "id": 1026,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1040,
+                  "id": 1023,
                   "mutability": "mutable",
                   "name": "recipient",
-                  "nameLocation": "19435:9:1",
+                  "nameLocation": "19266:9:1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1062,
-                  "src": "19427:17:1",
+                  "scope": 1045,
+                  "src": "19258:17:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -24713,10 +24315,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1039,
+                    "id": 1022,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "19427:7:1",
+                    "src": "19258:7:1",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -24727,13 +24329,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 1042,
+                  "id": 1025,
                   "mutability": "mutable",
                   "name": "amount",
-                  "nameLocation": "19454:6:1",
+                  "nameLocation": "19285:6:1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1062,
-                  "src": "19446:14:1",
+                  "scope": 1045,
+                  "src": "19277:14:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -24741,10 +24343,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1041,
+                    "id": 1024,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "19446:7:1",
+                    "src": "19277:7:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -24753,21 +24355,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "19426:35:1"
+              "src": "19257:35:1"
             },
             "returnParameters": {
-              "id": 1048,
+              "id": 1031,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1047,
+                  "id": 1030,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1062,
-                  "src": "19488:4:1",
+                  "scope": 1045,
+                  "src": "19319:4:1",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -24775,10 +24377,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1046,
+                    "id": 1029,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "19488:4:1",
+                    "src": "19319:4:1",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -24787,21 +24389,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "19487:6:1"
+              "src": "19318:6:1"
             },
-            "scope": 1063,
-            "src": "19397:234:1",
+            "scope": 1046,
+            "src": "19228:234:1",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 1064,
-        "src": "11490:8144:1",
+        "scope": 1047,
+        "src": "11490:7975:1",
         "usedErrors": []
       }
     ],
-    "src": "40:19594:1"
+    "src": "40:19425:1"
   },
   "compiler": {
     "name": "solc",
@@ -24809,7 +24411,7 @@
   },
   "networks": {},
   "schemaVersion": "3.2.3",
-  "updatedAt": "2021-09-18T02:25:13.733Z",
+  "updatedAt": "2021-09-18T07:40:43.763Z",
   "devdoc": {
     "details": "Wrappers over Solidity's arithmetic operations with added overflow checks. Arithmetic operations in Solidity wrap on overflow. This can easily result in bugs, because programmers usually assume that an overflow raises an error, which is the standard behavior in high level programming languages. `SafeMath` restores this intuition by reverting the transaction when an operation overflows. Using this library instead of the unchecked operations eliminates an entire class of bugs, so it's recommended to use it always.",
     "kind": "dev",

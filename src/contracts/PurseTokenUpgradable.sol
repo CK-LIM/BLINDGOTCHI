@@ -347,13 +347,11 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
     function initialize(
         address _to,
         address _lPool,
-        address _dPool,
         uint256 _burnPercent,
         uint256 _liqPercent,
         uint256 _disPercent
     ) public initializer {
         require(_lPool != address(0));
-        require(_dPool != address(0));
         require(_burnPercent >= 0);
         require(_liqPercent >= 0);
         require(_disPercent >= 0);

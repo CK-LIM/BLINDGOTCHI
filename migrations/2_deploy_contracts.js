@@ -18,7 +18,7 @@ module.exports = async function(deployer, network, accounts ) {
   if(network === 'rinkeby' || network === 'kovan' || network ==='bscTestnet') {
 
     //Deploy PurseToken
-    const purseToken = await deployProxy(PurseTokenUpgradable,["0x8CF7Fb0326C6a5B5A8dA62e3FE8c5eD8Cb041217", "0xA2993e1171520ba0fD0AB39224e1B24BDa5c24a9", "0x96C235003CEDd5E4C055aA0Ac624BF7CC787cF80", 10, 5, 5],{deployer, kind: 'uups' });
+    const purseToken = await deployProxy(PurseTokenUpgradable,["0x8CF7Fb0326C6a5B5A8dA62e3FE8c5eD8Cb041217", "0xA2993e1171520ba0fD0AB39224e1B24BDa5c24a9", 10, 5, 5],{deployer, kind: 'uups' });
     // const upgrade = await upgradeProxy(purseToken.address, PurseTokenUpgradableV2, { deployer }); //Upgrade smart contract
     console.log(purseToken.address)
     // console.log(upgrade.address)
