@@ -204,7 +204,6 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         require(block.timestamp < _getRewardEndTime); 
 
         updateAccumulateBalance(msg.sender);
-        // updateAccumulateBalanceTransaction(address(this), msg.sender); 
         require(accAmount[msg.sender].accReward > 0);
         uint256 claimAmount = accAmount[msg.sender].accReward;
         accAmount[msg.sender].accReward = 0;
@@ -275,7 +274,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         balanceOf[_account] -= _disAmount;
 
         totalSupply -= _burnAmount;
-        updateAccumulateBalanceTransaction(disPool, liqPool); 
+        // updateAccumulateBalanceTransaction(disPool, liqPool); 
         balanceOf[liqPool] += _liqAmount;
         balanceOf[disPool] += _disAmount;
 
@@ -333,7 +332,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
     function transferERCToken(address token, uint256 amount, address _to) public whenNotPaused onlyOwner{
         require(_to != address(0));
         if (token == address(this)) {
-            updateAccumulateBalanceTransaction(address(this), _to);
+            updateAccumulateBalance(_to);
             ERC20Interface(token).transfer(_to, amount);
         } else {
             ERC20Interface(token).transfer(_to, amount);          
