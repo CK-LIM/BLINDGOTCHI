@@ -212,7 +212,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
         return true;
     }
     
-    function activateClaimMonthly(uint256 _rewardStartTime, uint256 _rewardEndTime, uint256 _monthlyDisPr, uint256 _numOfDays, uint256 _percentage) public onlyOwner {
+    function activateClaimMonthly(uint256 _rewardStartTime, uint256 _rewardEndTime, uint256 _monthlyDisPr, uint256 _numOfDays, uint256 _percentage) public onlyAdmin {
         require(_rewardStartTime > block.timestamp );
         require(_rewardEndTime > _rewardStartTime);
         require(_numOfDays > 0);
