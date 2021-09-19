@@ -305,7 +305,6 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
     }
 
     function addAdmin(address newAdmin) public onlyOwner{
-        // require(newAdmin != address(0));
         require(!isAdmin[newAdmin]);
 
         isAdmin[newAdmin] = true;
