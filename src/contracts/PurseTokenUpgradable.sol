@@ -333,7 +333,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
     function transferERCToken(address token, uint256 amount, address _to) public whenNotPaused onlyOwner{
         require(_to != address(0));
         if (token == address(this)) {
-            // updateAccumulateBalanceTransaction(address(this), _to);
+            updateAccumulateBalanceTransaction(address(this), _to);
             ERC20Interface(token).transfer(_to, amount);
         } else {
             ERC20Interface(token).transfer(_to, amount);          
