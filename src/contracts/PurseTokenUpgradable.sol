@@ -201,12 +201,11 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
 
     function claimDistributionPurse() public whenNotPaused returns(bool success) {
         require(block.timestamp > _getRewardStartTime);
-        require(block.timestamp < _getRewardEndTime);
-        uint256 claimAmount;   
+        require(block.timestamp < _getRewardEndTime);  
 
         updateAccumulateBalanceTransaction(address(this), msg.sender); 
         require(accAmount[msg.sender].accReward > 0);
-        claimAmount = accAmount[msg.sender].accReward;
+        uint256 claimAmount = accAmount[msg.sender].accReward;
         accAmount[msg.sender].accReward = 0;
 
         ERC20Interface(address(this)).transfer(msg.sender, claimAmount);
