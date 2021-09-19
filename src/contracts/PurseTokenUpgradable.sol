@@ -201,9 +201,10 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
 
     function claimDistributionPurse() public whenNotPaused returns(bool success) {
         require(block.timestamp > _getRewardStartTime);
-        require(block.timestamp < _getRewardEndTime);  
+        require(block.timestamp < _getRewardEndTime); 
 
-        updateAccumulateBalanceTransaction(address(this), msg.sender); 
+        updateAccumulateBalance(msg.sender);
+        // updateAccumulateBalanceTransaction(address(this), msg.sender); 
         require(accAmount[msg.sender].accReward > 0);
         uint256 claimAmount = accAmount[msg.sender].accReward;
         accAmount[msg.sender].accReward = 0;
@@ -332,7 +333,7 @@ contract PurseTokenUpgradable is Initializable, UUPSUpgradeable, PausableUpgrade
     function transferERCToken(address token, uint256 amount, address _to) public whenNotPaused onlyOwner{
         require(_to != address(0));
         if (token == address(this)) {
-            updateAccumulateBalanceTransaction(address(this), _to);
+            // updateAccumulateBalanceTransaction(address(this), _to);
             ERC20Interface(token).transfer(_to, amount);
         } else {
             ERC20Interface(token).transfer(_to, amount);          
