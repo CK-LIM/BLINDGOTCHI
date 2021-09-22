@@ -1,0 +1,2 @@
+# WAGMIGOTCHI
+Add .env file
