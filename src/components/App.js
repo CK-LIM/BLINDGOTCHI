@@ -2,12 +2,9 @@ import Web3 from 'web3'
 import React, { Component } from 'react'
 import Navbar from './Navbar'
 import './App.css'
-import PurseTokenUpgradable from '../abis/PurseTokenUpgradable.json'
-import NPXSXEMigration from '../abis/NPXSXEMigration.json'
-import NPXSXEMBSC from '../abis/NPXSXEMBSC.json'
-import PurseDistribution from '../abis/PurseDistribution.json'
-import NPXSMigration from './NPXSMigration'
-import PurseDistribute from './PurseDistribution'
+import Wagmipet from '../abis/Wagmipet.json'
+import NFT from '../abis/NFT.json'
+import WAGMIGOTCHI from './WAGMIGOTCHI'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
@@ -18,14 +15,14 @@ class App extends Component {
     await this.loadBlockchainData();
     while (this.state.loading == false || this.state.loading == true) {
       if (this.state.wallet == true) {
-        await this.loadBlockchainDataRepeat()
-        console.log("repeattrue")
-        await this.delay(1500);
+        await this.loadBlockchainData()
+        // console.log("repeattrue")
+        await this.delay(2500);
       } else {
         window.alert('Please connect metamask wallet to Binance Smart Chain Testnet and refresh webpage.')
-        await this.loadBlockchainDataRepeat()
-        console.log("repeat")
-        await this.delay(1500);
+        await this.loadBlockchainData()
+        // console.log("repeat")
+        await this.delay(2500);
       }
     }
   }
@@ -33,166 +30,61 @@ class App extends Component {
   async loadBlockchainData() {
 
     const web3 = window.web3;
+    const infuraKey = "9aa3d95b3bc440fa88ea12eaa4456161";
+    const web3Eth = new Web3(`https://rinkeby.infura.io/v3/${infuraKey}`);  
     const accounts = await web3.eth.getAccounts()
 
     this.setState({ account: accounts[0] })
-    const first4Account = this.state.account.substring(0, 4)
+    const first6Account = this.state.account.substring(0, 6)
     const last4Account = this.state.account.slice(-4)
-    this.setState({ first4Account: first4Account })
+    this.setState({ first6Account: first6Account })
     this.setState({ last4Account: last4Account })
     const networkId = await web3.eth.net.getId()
     this.setState({ networkId: networkId })
 
-    // Load PurseToken
-    const purseTokenData = PurseTokenUpgradable.networks[networkId]
-    if (purseTokenData) {
-      const purseToken = new web3.eth.Contract(PurseTokenUpgradable.abi, purseTokenData.address)
-      this.setState({ purseToken })
-      let purseTokenBalance = await purseToken.methods.balanceOf(this.state.account).call()
-      this.setState({ purseTokenBalance: purseTokenBalance.toString() })
-    }
 
-    // Load NPXSXEMToken
-    const nPXSXEMBSCTokenData = NPXSXEMBSC.networks[networkId]
-    if (nPXSXEMBSCTokenData) {
-      const npxsxemToken = new web3.eth.Contract(NPXSXEMBSC.abi, nPXSXEMBSCTokenData.address)
-      this.setState({ npxsxemToken })
-      let npxsxemTokenBalance = await npxsxemToken.methods.balanceOf(this.state.account).call()
-      this.setState({ npxsxemTokenBalance: npxsxemTokenBalance.toString() })
-    }
-
-    // Load NPXSXEMigration
-    const npxsxeMigrateData = NPXSXEMigration.networks[networkId]
-    if (npxsxeMigrateData) {
-      const npxsxeMigrate = new web3.eth.Contract(NPXSXEMigration.abi, npxsxeMigrateData.address)
-      this.setState({ npxsxeMigrate })
-
-      let migrateIndex = await npxsxeMigrate.methods.migrateIndex().call()
-      this.setState({ migrateIndex })
-      this.setState({ migrator: [] })
-
-      for (var i = 0; i < migrateIndex; i++) {
-        const migratorInfo = await npxsxeMigrate.methods.migration(i).call()
-        if (migratorInfo.migrator == this.state.account) {
-          this.setState({
-            migrator: [...this.state.migrator, migratorInfo]
-          })
-        }
-      }
-    }
-
-    // Load NPXSXEMDistribution
-    const purseDistributionData = PurseDistribution.networks[networkId]
-    if (purseDistributionData) {
-      const purseDistribution = new web3.eth.Contract(PurseDistribution.abi, purseDistributionData.address)
-      this.setState({ purseDistribution })
+    // Load NFT
+    const nftData = NFT.networks[4]
+    // console.log(nftData.address)
+    if (nftData) {
+      const nft = new web3Eth.eth.Contract(NFT.abi, nftData.address)
+      this.setState({ nft })
       
-      let isClaim = await purseDistribution.methods.holder(this.state.account,0).call()
-      this.setState({ isClaim: isClaim.isRedeem })
-      this.setState({ holder: [] })
-      this.state.holder = [];
-      for (var i = 0; i < 1; i++) {
-        const holderInfo = await purseDistribution.methods.holder(this.state.account, i).call()
-        if (holderInfo.distributeAmount > 0) {
-          this.setState({
-            holder: [...this.state.holder, [holderInfo, i]]
-          })
-        }
-      }
+      let nftBalance = await nft.methods.balanceOf(this.state.account).call()
+      this.setState({nftBalance})
+      // console.log(nftBalance)
+
+    }
+
+
+    // Load Wagmipet
+    const wagmiPetData = Wagmipet.networks[networkId]
+    // console.log(wagmiPetData)
+    if (wagmiPetData) {
+      const wagmiPet = new web3.eth.Contract(Wagmipet.abi, wagmiPetData.address)
+      this.setState({ wagmiPet })
+      
+      let hunger = await wagmiPet.methods.getHunger().call()
+      let uncleanliness = await wagmiPet.methods.getUncleanliness().call()
+      let boredom = await wagmiPet.methods.getBoredom().call()
+      let sleepiness = await wagmiPet.methods.getSleepiness().call()
+      let status = await wagmiPet.methods.getStatus().call()
+      let alive = await wagmiPet.methods.getAlive().call()
+      this.setState({hunger})
+      this.setState({uncleanliness})
+      this.setState({boredom})
+      this.setState({sleepiness})
+      this.setState({status})
+      this.setState({alive})
+
       this.setState({ loading: false })
       this.setState({ wallet: true })
-    }
-    else {
+    } else {
+      this.setState({ loading: false })
       this.setState({ wallet: false })
     }
   }
 
-  async loadBlockchainDataRepeat() {
-
-    const web3 = window.web3;
-    const accounts = await web3.eth.getAccounts()
-    if (this.state.account != accounts[0]) {
-      await this.loadBlockchainData();
-    }
-    this.setState({ account: accounts[0] })
-    const first4Account = this.state.account.substring(0, 4)
-    const last4Account = this.state.account.slice(-4)
-    this.setState({ first4Account: first4Account })
-    this.setState({ last4Account: last4Account })
-    const networkId = await web3.eth.net.getId()
-    this.setState({ networkId: networkId })
-
-    // Load PurseToken
-    const purseTokenData = PurseTokenUpgradable.networks[networkId]
-    if (purseTokenData) {
-      const purseToken = new web3.eth.Contract(PurseTokenUpgradable.abi, purseTokenData.address)
-      this.setState({ purseToken })
-      let purseTokenBalance = await purseToken.methods.balanceOf(this.state.account).call()
-      this.setState({ purseTokenBalance: purseTokenBalance.toString() })
-    }
-
-
-    // Load NPXSXEMToken
-    const nPXSXEMBSCTokenData = NPXSXEMBSC.networks[networkId]
-    if (nPXSXEMBSCTokenData) {
-      const npxsxemToken = new web3.eth.Contract(NPXSXEMBSC.abi, nPXSXEMBSCTokenData.address)
-      this.setState({ npxsxemToken })
-      let npxsxemTokenBalance = await npxsxemToken.methods.balanceOf(this.state.account).call()
-      this.setState({ npxsxemTokenBalance: npxsxemTokenBalance.toString() })
-    }
-
-
-    // Load NPXSXEMigration
-    const npxsxeMigrateData = NPXSXEMigration.networks[networkId]
-    if (npxsxeMigrateData) {
-      const npxsxeMigrate = new web3.eth.Contract(NPXSXEMigration.abi, npxsxeMigrateData.address)
-      this.setState({ npxsxeMigrate })
-
-      let migrateIndexNew = await npxsxeMigrate.methods.migrateIndex().call()
-      if (this.state.migrateIndex != migrateIndexNew) {
-        this.setState({ migrator: [] })
-        for (var i = 0; i < migrateIndexNew; i++) {
-          const migratorInfo = await npxsxeMigrate.methods.migration(i).call()
-          if (migratorInfo.migrator == this.state.account) {
-            this.setState({
-              migrator: [...this.state.migrator, migratorInfo]
-            })
-          }
-        }
-        this.state.migrateIndex = migrateIndexNew
-      }
-    }
-
-
-    // Load NPXSXEMDistribution
-    const purseDistributionData = PurseDistribution.networks[networkId]
-    if (purseDistributionData) {
-      const purseDistribution = new web3.eth.Contract(PurseDistribution.abi, purseDistributionData.address)
-      this.setState({ purseDistribution })
-
-      let isClaimNew = await purseDistribution.methods.holder(this.state.account,0).call()
-      this.setState({ isClaimNew: isClaimNew.isRedeem})
-
-      if (this.state.isClaim != this.state.isClaimNew) {
-      this.setState({ holder: [] })
-        for (var i = 0; i < 1; i++) {
-          const holderInfo = await purseDistribution.methods.holder(this.state.account, i).call()
-          if (holderInfo.distributeAmount > 0) {
-            this.setState({
-              holder: [...this.state.holder, [holderInfo, i]]
-            })
-          }
-        }
-        this.state.isClaim = this.state.isClaimNew
-    }
-
-      this.setState({ loading: false })
-      this.setState({ wallet: true })
-    }
-    else {
-      this.setState({ wallet: false })
-    }
-  }
 
   async loadWeb3() {
     // Modern dapp browsers...
@@ -215,114 +107,57 @@ class App extends Component {
 
 
 
-  signMessage = async (address, amount, nonce) => {
-    console.log(address);
-    console.log(amount);
-    console.log(nonce);
-    const message = window.web3.utils.soliditySha3(
-      { t: 'address', v: this.state.account },
-      { t: 'address', v: address },
-      { t: 'uint256', v: amount },
-      { t: 'uint256', v: nonce },
-    ).toString('hex');
-    console.log(message);
-    let signature = await window.web3.eth.sign(message, this.state.account)
-    console.log(signature)
-    this.bridgeEthBscTransfer(address, amount, nonce, signature)
-  }
 
   delay = ms => new Promise(res => setTimeout(res, ms));
 
-  migrateNPXSXEM = (toAddress, amount) => {
+  clean = () => {
     this.setState({ loading: true })
-    this.state.npxsxemToken.methods.approve(this.state.npxsxeMigrate._address, amount).send({ from: this.state.account }).then((result) => {
-      this.state.npxsxeMigrate.methods.migrateNPXSXEM(toAddress, amount).send({ from: this.state.account }).on('transactionHash', (hash) => {
-        this.delay(2000).then((result) => {
-          alert("Transaction send!\n" + "Hash: " + hash + "\n\n" + "For transaction details, please check your wallet activity." + "\n\n" + "Webpage will update migration record after transaction completed.")
-          this.setState({ loading: false })
-        })
-      })
-    })
-  }
-
-  claim = (iteration) => {
-    this.setState({ loading: true })
-    this.state.purseDistribution.methods.claim(iteration).send({ from: this.state.account }).on('transactionHash', (hash) => {
-      alert("Transaction send!\n" + "Hash: " + hash + "\n\n" + "For transaction details, please check your wallet activity." + "\n\n" + "Webpage will update migration record after transaction completed.")
+    this.state.wagmiPet.methods.clean().send({ from: this.state.account }).on('transactionHash', (hash) => {
+      alert("Cleaning")
       this.setState({ loading: false })
     })
   }
 
-  claimAll = (iterationEnd) => {
+  feed = () => {
     this.setState({ loading: true })
-    this.state.purseDistribution.methods.claimAll(iterationEnd).send({ from: this.state.account }).on('transactionHash', (hash) => {
+    this.state.wagmiPet.methods.feed().send({ from: this.state.account }).on('transactionHash', (hash) => {
+      alert("Feeding")
       this.setState({ loading: false })
-      this.componentWillMount();
+    })
+  }
+
+  play = () => {
+    this.setState({ loading: true })
+    this.state.wagmiPet.methods.play().send({ from: this.state.account }).on('transactionHash', (hash) => {
+      alert("Playing")
+      this.setState({ loading: false })
+    })
+  }
+
+  sleep = () => {
+    this.setState({ loading: true })
+    this.state.wagmiPet.methods.sleep().send({ from: this.state.account }).on('transactionHash', (hash) => {
+      alert("Sleeping")
+      this.setState({ loading: false })
     })
   }
 
 
-  bscTransfer = async (transferAmount, toAdd) => {
-    var account = await window.BinanceChain.requestAccounts()
-    let L = account.length
 
-    let senderAdd
-    let senderId
-    for (var i = 0; i < L; i++) {
-      let bbcTestnetAdd = account[i].addresses[0].address
-      if (bbcTestnetAdd == this.state.bscAccount) {
-        senderAdd = bbcTestnetAdd
-        senderId = account[i].id
-      }
-    }
 
-    try {
-      await window.BinanceChain.transfer({
-        fromAddress: senderAdd,
-        toAddress: "tbnb1nk686g47hsm0zyj80acuv43eu65w4qzsvcaeu5",
-        asset: "BNB",
-        accountId: senderId,
-        amount: transferAmount,
-        networkId: "bbc-testnet",
-        memo: toAdd
-      }).then((result) => {
-        // console.log(result)
-        alert("Transaction successful!\n" + "From     : " + result.fromAddress + "\n" + "To          : " + result.toAddress + "\n" + "Amount : " + result.amount + "\n\n" + "For transaction details, please check your Binance wallet activity.")
-      })
-    } catch (error) {
-      alert(error.message)
-    }
 
-  }
-
-  bcSignMessage = async () => {
-    var msg = 'hello world'
-    var account = await window.BinanceChain.requestAccounts().then()
-    let L = account.length
-
-    let senderAdd
-    let senderId
-    for (var i = 0; i < L; i++) {
-      let bbcTestnetAdd = account[i].addresses[0].address
-      if (bbcTestnetAdd == this.state.bscAccount) {
-        senderAdd = bbcTestnetAdd
-        senderId = account[i].id
-      }
-    }
-    // if (!from) return connect()
-    window.BinanceChain.bnbSign(senderAdd, msg).then((sig) => {
-      console.log('SIGNED:' + JSON.stringify(sig))
-    })
-  }
 
   constructor(props) {
     super(props)
     this.state = {
       account: '0x0',
-      purseTokenBalance: '0',
-      holderInfo: {},
-      migrator: [],
-      holder: [],
+      hunger: '0',
+      uncleanliness: '0',
+      boredom: '0',
+      sleepiness: '0',
+      status: '',
+      alive: '0',
+      nftBalance: '0',
       loading: true,
       wallet: true
     }
@@ -331,57 +166,46 @@ class App extends Component {
   render() {
     let content
     let content2
-    let content3
     if (this.state.loading) {
       content = <p id="loader" className="text-center">Loading...</p>
       content2 = <p id="loader" className="text-center">Loading...</p>
-      content3 = <p id="loader" className="text-center">Loading...</p>
     } else {
-      content = <NPXSMigration
+      content = <WAGMIGOTCHI
         account={this.state.account}
-        purseTokenBalance={this.state.purseTokenBalance}
-        npxsxemTokenBalance={this.state.npxsxemTokenBalance}
-        // bscNpxsxemBalance={this.state.bscNpxsxemBalance}
-        migrator={this.state.migrator}
-        first4Account={this.state.first4Account}
+        first6Account={this.state.first6Account}
         last4Account={this.state.last4Account}
-        migrateNPXSXEM={this.migrateNPXSXEM}
-        // signMessage={this.signMessage}
-        release={this.release}
-        releaseAll={this.releaseAll}
-        // bscTransfer={this.bscTransfer}
-        // bcSignMessage={this.bcSignMessage}
-      />
-      content2 = <PurseDistribute
-        account={this.state.account}
-        first4Account={this.state.first4Account}
-        last4Account={this.state.last4Account}
-        purseTokenBalance={this.state.purseTokenBalance}
-        holderInfo={this.state.holderInfo}
-        holder={this.state.holder}
-        claimAll={this.claimAll}
-        claim={this.claim}
-        handleClick={this.handleClick}
-      />
-      content3 = <PurseDistribute
+        hunger={this.state.hunger}
+        uncleanliness={this.state.uncleanliness}
+        boredom={this.state.boredom}
+        sleepiness={this.state.sleepiness}
+        status={this.state.status}
+        alive={this.state.alive}
+        nftBalance={this.state.nftBalance}
+        clean={this.clean}
+        feed={this.feed}
+        play={this.play}
+        sleep={this.sleep}
       />
     }
 
     return (
       <Router>
         <div>
-          <Navbar account={this.state.account} />
+          <Navbar 
+          account={this.state.account}         
+          first6Account={this.state.first6Account}        
+          last4Account={this.state.last4Account}
+          nftBalance={this.state.nftBalance}/>
           <div className="container-fluid mt-5">
             <div className="row">
-              <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '1100px' }}>
+              <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '800px' }}>
                 <div className="content mr-auto ml-auto">
                   {/* {content} */}
                   <Switch>
                     {/* <Route path="/" exact > {content} </Route> */}
                     <Route path="/" exact > {content} </Route>
-                    <Route path="/PRTokenBDL/" exact > {content} </Route>
-                    <Route path="/PRTokenBDL/NPXSXEMigration/" exact > {content} </Route>
-                    <Route path="/PRTokenBDL/PurseDistribution/" exact > {content2} </Route>
+                    <Route path="/WAGMIGOTCHI/" exact > {content} </Route>
+                    <Route path="/BLINDGOTCHI/" exact > {content2} </Route>
                   </Switch>
                 </div>
               </main>

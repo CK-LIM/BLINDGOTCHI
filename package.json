@@ -3,7 +3,7 @@
   "Access-Control-Allow-Origin": "http://data-seed-pre-2-s1.binance.org:80/",
   "name": "defi-tutorial",
   "version": "0.1.0",
-  "description": "DeFi Token Staking App",
+  "description": "Wagmigotchi app",
   "author": "cklim",
   "dependencies": {
     "@binance-chain/bsc-connector": "^1.0.0",
@@ -20,6 +20,7 @@
     "babel-preset-stage-2": "6.24.1",
     "babel-preset-stage-3": "6.24.1",
     "babel-register": "6.26.0",
+    "base64-sol": "^1.0.1",
     "bootstrap": "4.3.1",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
@@ -37,12 +38,13 @@
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "2.1.3",
+    "react-spring": "^9.2.3",
     "reactjs-popup": "^2.0.5",
     "truffle": "5.1.39",
     "web3": "1.2.11",
     "ws": "^8.1.0"
   },
-  "homepage": "http://CK-LIM.github.io/PRTokenBDL",
+  "homepage": "http://CK-LIM.github.io/WAGMIGOTCHI",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && cp build/index.html build/404.html",
