@@ -50,14 +50,14 @@ class WAGMIGOTCHI extends Component {
                 <div className="text-center">
                     <ButtonGroup>
                         {/* <Button variant="outlined" color="default" component={Link} to="/PRTokenDistribution/">Liquidity Pool</Button> */}
-                        <Button variant="contained" color="default" component={Link} to="/WAGMIGOTCHI/">WAGMIGOTCHI</Button>
-                        <Button variant="outlined" color="default" component={Link} to="/DEJITARUCHI/">DEJITARUCHI</Button>
+                        <Button variant="contained" color="default" component={Link} to="/WAGMIGOTCHI/">BlindGOTCHI</Button>
+                       
                     </ButtonGroup>
                 </div>
 
                 &nbsp;
                 {/* ******************************************Migrate NPXSXEM on Binance Chain BEP2******************************************** */}
-                <h2 className="table table-borderless text-muted text-center">Interact with WAGMIGOTCHI!</h2>&nbsp;
+                <h2 className="table table-borderless text-muted text-center">Interact with BlindGOTCHI!</h2>&nbsp;
 
                 <div className="card mb-4 card-body" >
                     <div className="text-center" >
@@ -77,7 +77,7 @@ class WAGMIGOTCHI extends Component {
 
                     <div className="card mb-4 card-body" >
                         <span className="float-right text-muted">
-                            <div>WAGMIGOTCHI {'>'}  {this.props.status}</div>
+                            <div>BlindGOTCHI {'>'}  {this.props.status}</div>
                         </span>
                     </div>
                     <div >
@@ -114,7 +114,7 @@ class WAGMIGOTCHI extends Component {
                                 event.preventDefault()
                                 this.clickHandler(this.props.nftBalance)
                                 if (this.state.validAmount == false) {
-                                    alert("PLease get your NFT to interact with WAGMIGOTCHI")
+                                    alert("PLease get your NFT to interact with BlindGOTCHI")
                                 } else {
                                     this.props.clean()
                                 }
@@ -131,7 +131,7 @@ class WAGMIGOTCHI extends Component {
                                 event.preventDefault()
                                 this.clickHandler(this.props.nftBalance)
                                 if (this.state.validAmount == false) {
-                                    alert("PLease get your nft to interact with WAGMIGOTCHI")
+                                    alert("PLease get your nft to interact with BlindGOTCHI")
                                 } else {
                                     this.props.feed()
                                 }                                
@@ -147,7 +147,7 @@ class WAGMIGOTCHI extends Component {
                                 event.preventDefault()
                                 this.clickHandler(this.props.nftBalance)
                                 if (this.state.validAmount == false) {
-                                    alert("PLease get your nft to interact with WAGMIGOTCHI")
+                                    alert("PLease get your nft to interact with BlindGOTCHI")
                                 } else {
                                     this.props.play()
                                 }
@@ -164,7 +164,7 @@ class WAGMIGOTCHI extends Component {
                                 this.clickHandler(this.props.nftBalance)
                                 console.log(this.state.validAmount)
                                 if (this.state.validAmount == false) {
-                                    alert("PLease get your nft to interact with WAGMIGOTCHI")
+                                    alert("PLease get your nft to interact with BlindGOTCHI")
                                 } else {
                                     this.props.sleep()
                                 }

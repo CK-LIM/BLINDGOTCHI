@@ -15,7 +15,7 @@ class Navbar extends Component {
           rel="noopener noreferrer"
         >
           <img src={character} width="30" height="30" className="d-inline-block align-top" alt="" />
-          &nbsp; WAGMIGOTCHI
+          &nbsp; BlindGOTCHI
         </a>
 
         <ul className="navbar-nav px-3">
