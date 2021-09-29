@@ -14,6 +14,8 @@ pragma solidity ^0.8.0;
 contract Wagmipet {
     address _owner;
     bool _birthed;
+    address[] public caretakers;
+    uint256 public caretakerIndex;
     
     event CaretakerLoved(address indexed caretaker, uint256 indexed amount);
     
@@ -27,7 +29,12 @@ contract Wagmipet {
     uint8 internal boredom;
     uint8 internal sleepiness;
     
-    mapping (address => uint256) public love;
+    mapping (address => careTakerInfo) public love;
+
+    struct careTakerInfo {
+        address careTaker;
+        uint256 love;
+    }
     
     modifier onlyOwner() {
         require(msg.sender == _owner);
@@ -48,14 +55,19 @@ contract Wagmipet {
     }
     
     function addLove(address caretaker, uint256 amount) internal {
-        love[caretaker] += amount;
+        if (love[caretaker].love == 0) {
+            caretakers.push(caretaker);
+            love[caretaker].careTaker = caretaker;
+            caretakerIndex +=1;
+        }
+        love[caretaker].love += amount;
         emit CaretakerLoved(caretaker, amount);
     }
     
     function feed() public {
-        require(getAlive(), "no longer with us");
-        require(getBoredom() < 80, "im too tired to eat");
-        require(getUncleanliness() < 80, "im feeling too gross to eat");
+        require(getAlive(), "No longer with us");
+        require(getBoredom() < 80, "I'm too tired to eat");
+        require(getUncleanliness() < 80, "I'm feeling too gross to eat");
         // require(getHunger() > 0, "i dont need to eat");
         
         lastFeedBlock = block.number;
@@ -68,8 +80,8 @@ contract Wagmipet {
     }
     
     function clean() public {
-        require(getAlive(), "no longer with us");
-        require(getUncleanliness() > 0, "i dont need a bath");
+        require(getAlive(), "No longer with us");
+        require(getUncleanliness() > 0, "I dont need a bath");
         lastCleanBlock = block.number;
         
         uncleanliness = 0;
@@ -78,10 +90,10 @@ contract Wagmipet {
     }
     
     function play() public {
-        require(getAlive(), "no longer with us");
-        require(getHunger() < 80, "im too hungry to play");
-        require(getSleepiness() < 80, "im too sleepy to play");
-        require(getUncleanliness() < 80, "im feeling too gross to play");
+        require(getAlive(), "No longer with us");
+        require(getHunger() < 80, "I'm too hungry to play");
+        require(getSleepiness() < 80, "I'm too sleepy to play");
+        require(getUncleanliness() < 80, "I'm feeling too gross to play");
         // require(getBoredom() > 0, "i dont wanna play");
         
         lastPlayBlock = block.number;
@@ -95,9 +107,9 @@ contract Wagmipet {
     }
     
     function sleep() public {
-        require(getAlive(), "no longer with us");
-        require(getUncleanliness() < 80, "im feeling too gross to sleep");
-        require(getSleepiness() > 0, "im not feeling sleepy");
+        require(getAlive(), "No longer with us");
+        require(getUncleanliness() < 80, "I'm feeling too gross to sleep");
+        require(getSleepiness() > 0, "I'm not feeling sleepy");
         
         lastSleepBlock = block.number;
         
@@ -111,10 +123,10 @@ contract Wagmipet {
         uint256 mostNeeded = 0;
         
         string[4] memory goodStatus = [
-            "gm",
-            "im feeling great",
-            "all good",
-            "i love u"
+            "GM",
+            "I'm feeling great",
+            "All good",
+            "I love u"
         ];
         
         string memory status = goodStatus[block.number % 4];
@@ -125,35 +137,35 @@ contract Wagmipet {
         uint256 _sleepiness = getSleepiness();
         
         if (getAlive() == false) {
-            return "no longer with us";
+            return "No longer with us";
         }
         
         if (_hunger > 50 && _hunger > mostNeeded) {
             mostNeeded = _hunger;
-            status = "im hungry";
+            status = "I'm hungry";
         }
         
         if (_uncleanliness > 50 && _uncleanliness > mostNeeded) {
             mostNeeded = _uncleanliness;
-            status = "i need a bath";
+            status = "I need a bath";
         }
         
         if (_boredom > 50 && _boredom > mostNeeded) {
             mostNeeded = _boredom;
-            status = "im bored";
+            status = "I'm bored";
         }
         
         if (_sleepiness > 50 && _sleepiness > mostNeeded) {
             mostNeeded = _sleepiness;
-            status = "im sleepy";
+            status = "I'm sleepy";
         }
         
         return status;
     }
     
     function getAlive() public view returns (bool) {
-        return getHunger() < 101 && getUncleanliness() < 101 &&
-            getBoredom() < 101 && getSleepiness() < 101;
+        return getHunger() < 201 && getUncleanliness() < 201 &&
+            getBoredom() < 201 && getSleepiness() < 201;
     }
     
     function getHunger() public view returns (uint256) {

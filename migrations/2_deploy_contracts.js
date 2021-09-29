@@ -10,7 +10,7 @@ function tokens(n) {
 }
 
 module.exports = async function(deployer, network, accounts ) {
-  if(network === 'kovan' || network ==='bscTestnet') {
+  if(network === 'rinkeby' || network ==='bscTestnet') {
 
     await deployer.deploy(Wagmipet)
     const wagmipet = await Wagmipet.deployed()
@@ -19,12 +19,12 @@ module.exports = async function(deployer, network, accounts ) {
     
   }
 
-  if(network === 'rinkeby') {
+  // if(network === 'rinkeby') {
 
-    await deployer.deploy(NFT)
-    const nft = await NFT.deployed()
+  //   await deployer.deploy(NFT)
+  //   const nft = await NFT.deployed()
     
-    console.log('deploy done')
+  //   console.log('deploy done')
 
-  }
+  // }
 };

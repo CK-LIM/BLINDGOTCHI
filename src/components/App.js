@@ -15,12 +15,12 @@ class App extends Component {
     await this.loadBlockchainData();
     while (this.state.loading == false || this.state.loading == true) {
       if (this.state.wallet == true) {
-        await this.loadBlockchainData()
+        await this.loadBlockchainDataRepeat()
         // console.log("repeattrue")
         await this.delay(2500);
       } else {
-        window.alert('Please connect metamask wallet to Binance Smart Chain Testnet and refresh webpage.')
-        await this.loadBlockchainData()
+        window.alert('Please connect metamask wallet to Rinkeby Testnet and refresh webpage.')
+        await this.loadBlockchainDataRepeat()
         // console.log("repeat")
         await this.delay(2500);
       }
@@ -43,19 +43,20 @@ class App extends Component {
     this.setState({ networkId: networkId })
 
 
-    // Load NFT
-    // const nftData = NFT.networks[1]
-    // console.log(nftData.address)
-    // if (nftData) {
+
     const nft = new web3Eth.eth.Contract([{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"claim","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber1","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber2","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber3","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber4","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber5","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber6","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber7","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber8","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerClaim","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address payable","name":"_to","type":"address"}],"name":"withdrawFunds","outputs":[],"stateMutability":"nonpayable","type":"function"}], "0x94d63b7af8bb003cd435311137776f86c4be2c3b")
     this.setState({ nft })
     
     let nftBalance = await nft.methods.balanceOf(this.state.account).call()
     this.setState({nftBalance})
-      // console.log(nftBalance)
 
-    // }
+    var conn_Eth = new Web3(new Web3.providers.WebsocketProvider("wss://rinkeby.infura.io/ws/v3/0866de87b4de4c7f843156d964c88c0a"));
+    const Eth_wagmi = new conn_Eth.eth.Contract(Wagmipet.abi,Wagmipet.networks[networkId].address);
 
+    Eth_wagmi.events.CaretakerLoved()
+      .on('data', async event => {
+        this.componentWillMount()
+      })
 
     // Load Wagmipet
     const wagmiPetData = Wagmipet.networks[networkId]
@@ -63,19 +64,87 @@ class App extends Component {
     if (wagmiPetData) {
       const wagmiPet = new web3.eth.Contract(Wagmipet.abi, wagmiPetData.address)
       this.setState({ wagmiPet })
-      
+      let loveInfo = await wagmiPet.methods.love(this.state.account).call()
+      let love = loveInfo.love
       let hunger = await wagmiPet.methods.getHunger().call()
       let uncleanliness = await wagmiPet.methods.getUncleanliness().call()
       let boredom = await wagmiPet.methods.getBoredom().call()
       let sleepiness = await wagmiPet.methods.getSleepiness().call()
       let status = await wagmiPet.methods.getStatus().call()
       let alive = await wagmiPet.methods.getAlive().call()
+
+      // let caretaker = await wagmiPet.methods.caretakers().call()
+
+      let caretakerIndex = await wagmiPet.methods.caretakerIndex().call()
+      this.setState({ caretakerIndex })
+      this.setState({ caretakers: [] })
+
+      for (var i = 0; i < caretakerIndex; i++) {
+        let caretakerAdd = await wagmiPet.methods.caretakers(i).call()
+        const caretakerInfo = await wagmiPet.methods.love(caretakerAdd).call()
+          this.setState({
+            caretakers: [...this.state.caretakers, caretakerInfo]
+          })        
+      }
+      this.state.caretakers.sort(function(a, b) {
+        var keyA = a.love,
+          keyB = b.love;
+        // Compare the 2 dates
+        if (keyA > keyB) return -1;
+        if (keyA < keyB) return 1;
+        return 0;
+      });
+
+      this.setState({love})
       this.setState({hunger})
       this.setState({uncleanliness})
       this.setState({boredom})
       this.setState({sleepiness})
       this.setState({status})
       this.setState({alive})
+
+      this.setState({ loading: false })
+      this.setState({ wallet: true })
+    } else {
+      this.setState({ loading: false })
+      this.setState({ wallet: false })
+    }
+  }
+
+
+  async loadBlockchainDataRepeat() {
+
+    const web3 = window.web3;
+    const infuraKey = "9aa3d95b3bc440fa88ea12eaa4456161";
+    const web3Eth = new Web3(`https://mainnet.infura.io/v3/${infuraKey}`);  
+    const accounts = await web3.eth.getAccounts()
+
+    this.setState({ account: accounts[0] })
+    const first6Account = this.state.account.substring(0, 6)
+    const last4Account = this.state.account.slice(-4)
+    this.setState({ first6Account: first6Account })
+    this.setState({ last4Account: last4Account })
+    const networkId = await web3.eth.net.getId()
+    this.setState({ networkId: networkId })
+
+    const nft = new web3Eth.eth.Contract([{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"claim","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber1","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber2","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber3","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber4","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber5","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber6","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber7","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getNumber8","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerClaim","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"},{"internalType":"address payable","name":"_to","type":"address"}],"name":"withdrawFunds","outputs":[],"stateMutability":"nonpayable","type":"function"}], "0x94d63b7af8bb003cd435311137776f86c4be2c3b")
+    this.setState({ nft })
+    
+    let nftBalance = await nft.methods.balanceOf(this.state.account).call()
+    this.setState({nftBalance})
+
+    // Load Wagmipet
+    const wagmiPetData = Wagmipet.networks[networkId]
+    if (wagmiPetData) {
+
+      this.state.caretakers.sort(function(a, b) {
+        var keyA = a.love,
+          keyB = b.love;
+        // Compare the 2 dates
+        if (keyA > keyB) return -1;
+        if (keyA < keyB) return 1;
+        return 0;
+      });
 
       this.setState({ loading: false })
       this.setState({ wallet: true })
@@ -104,8 +173,6 @@ class App extends Component {
       window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
     }
   }
-
-
 
 
   delay = ms => new Promise(res => setTimeout(res, ms));
@@ -142,11 +209,6 @@ class App extends Component {
     })
   }
 
-
-
-
-
-
   constructor(props) {
     super(props)
     this.state = {
@@ -157,7 +219,9 @@ class App extends Component {
       sleepiness: '0',
       status: '',
       alive: '0',
+      love: '0',
       nftBalance: '0',
+      caretakers: [],
       loading: true,
       wallet: true
     }
@@ -180,7 +244,9 @@ class App extends Component {
         sleepiness={this.state.sleepiness}
         status={this.state.status}
         alive={this.state.alive}
+        love={this.state.love}
         nftBalance={this.state.nftBalance}
+        caretakers = {this.state.caretakers}
         clean={this.clean}
         feed={this.feed}
         play={this.play}
@@ -195,7 +261,8 @@ class App extends Component {
           account={this.state.account}         
           first6Account={this.state.first6Account}        
           last4Account={this.state.last4Account}
-          nftBalance={this.state.nftBalance}/>
+          nftBalance={this.state.nftBalance}
+          love={this.state.love}/>
           <div className="container-fluid mt-5">
             <div className="row">
               <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '800px' }}>
@@ -204,7 +271,7 @@ class App extends Component {
                   <Switch>
                     {/* <Route path="/" exact > {content} </Route> */}
                     <Route path="/" exact > {content} </Route>
-                    <Route path="/WAGMIGOTCHI/" exact > {content} </Route>
+                    <Route path="/BLINDGOTCHI/" exact > {content} </Route>
                     <Route path="/BLINDGOTCHI/" exact > {content2} </Route>
                   </Switch>
                 </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import './App.css';
 import character from '../character.png'
+import love from '../Love.ico'
 
 class Navbar extends Component {
 
@@ -21,6 +22,7 @@ class Navbar extends Component {
         <ul className="navbar-nav px-3">
           <li className="nav-item text-nowrap-small d-none d-sm-none d-sm-block">
             <span className="text-light">
+            <span id="balance">{this.props.love}&nbsp;<img src={love} height='28' alt="" /></span>&nbsp;&nbsp;
               <span id="balance">{this.props.nftBalance} NFT</span>&nbsp;&nbsp;&nbsp;
               <span id="account">{this.props.first6Account}...{this.props.last4Account}</span>
             </span>
