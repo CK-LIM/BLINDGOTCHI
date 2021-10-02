@@ -66,8 +66,8 @@ contract Wagmipet {
     
     function feed() public {
         require(getAlive(), "No longer with us");
-        require(getBoredom() < 80, "I'm too tired to eat");
-        require(getUncleanliness() < 80, "I'm feeling too gross to eat");
+        require(getBoredom() < 160, "I'm too tired to eat");
+        require(getUncleanliness() < 160, "I'm feeling too gross to eat");
         // require(getHunger() > 0, "i dont need to eat");
         
         lastFeedBlock = block.number;
@@ -91,9 +91,9 @@ contract Wagmipet {
     
     function play() public {
         require(getAlive(), "No longer with us");
-        require(getHunger() < 80, "I'm too hungry to play");
-        require(getSleepiness() < 80, "I'm too sleepy to play");
-        require(getUncleanliness() < 80, "I'm feeling too gross to play");
+        require(getHunger() < 160, "I'm too hungry to play");
+        require(getSleepiness() < 160, "I'm too sleepy to play");
+        require(getUncleanliness() < 160, "I'm feeling too gross to play");
         // require(getBoredom() > 0, "i dont wanna play");
         
         lastPlayBlock = block.number;
@@ -108,7 +108,7 @@ contract Wagmipet {
     
     function sleep() public {
         require(getAlive(), "No longer with us");
-        require(getUncleanliness() < 80, "I'm feeling too gross to sleep");
+        require(getUncleanliness() < 160, "I'm feeling too gross to sleep");
         require(getSleepiness() > 0, "I'm not feeling sleepy");
         
         lastSleepBlock = block.number;

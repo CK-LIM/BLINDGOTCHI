@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/WAGMIGOTCHI/precache-manifest.5c02c00dee02972a9a902c0442a2cf64.js"
+  "/WAGMIGOTCHI/precache-manifest.2cf04d7de225ea66dacca36af7cf622a.js"
 );
 
 workbox.clientsClaim();

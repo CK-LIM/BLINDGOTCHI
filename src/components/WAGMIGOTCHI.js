@@ -202,7 +202,7 @@ class WAGMIGOTCHI extends Component {
                 {/* ********************************* show Token old************************************ */}
                 <div className="card mb-4 card-body" >
 
-                    <h4 className="table table-borderless text-muted text-center">BlindGOTCHI <img src={love} height='30' alt="" /> Ranking</h4>&nbsp;
+                    <h4 className="table table-borderless text-muted text-center">BlindGOTCHI Caretaker <img src={love} height='30' alt="" /> Ranking</h4>&nbsp;
                     <table className="table">
                         <thead>
                             <tr>
@@ -213,10 +213,10 @@ class WAGMIGOTCHI extends Component {
                             </tr>
                         </thead>
                         <tbody id="claimList" >
-                            {this.props.caretakers.map((caretakerInfo, key) => {
+                            {this.props.sortItem.map((caretakerInfo, key) => {
                                 return (
                                     <tr key={key}>
-                                        <td>{this.props.caretakers.indexOf(caretakerInfo)+1}</td>
+                                        <td>{this.props.sortItem.indexOf(caretakerInfo)+1}</td>
                                         <td>{caretakerInfo.careTaker}</td>
                                         <td>{caretakerInfo.love}</td>
                                     </tr>
