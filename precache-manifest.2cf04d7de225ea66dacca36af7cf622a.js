@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "3f20279ebb5b7eaf8cf7",
+    "revision": "6c0c373636b5834e50e5",
     "url": "/WAGMIGOTCHI/static/css/main.9004dc0f.chunk.css"
   },
   {
-    "revision": "3f20279ebb5b7eaf8cf7",
-    "url": "/WAGMIGOTCHI/static/js/main.3f20279e.chunk.js"
+    "revision": "6c0c373636b5834e50e5",
+    "url": "/WAGMIGOTCHI/static/js/main.6c0c3736.chunk.js"
   },
   {
     "revision": "2b2d9c818da7b3cc0bd1",
@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/WAGMIGOTCHI/static/media/Love.166ff2d5.ico"
   },
   {
-    "revision": "5aaa03c499caea6f6af327c8a94c0696",
+    "revision": "418ab15e20d2801c7905071a1d732a0e",
     "url": "/WAGMIGOTCHI/index.html"
   }
 ];

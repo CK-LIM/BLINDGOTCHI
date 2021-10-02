@@ -1,7 +1,7 @@
 {
   "main.css": "/WAGMIGOTCHI/static/css/main.9004dc0f.chunk.css",
-  "main.js": "/WAGMIGOTCHI/static/js/main.3f20279e.chunk.js",
-  "main.js.map": "/WAGMIGOTCHI/static/js/main.3f20279e.chunk.js.map",
+  "main.js": "/WAGMIGOTCHI/static/js/main.6c0c3736.chunk.js",
+  "main.js.map": "/WAGMIGOTCHI/static/js/main.6c0c3736.chunk.js.map",
   "static/css/1.c8806d17.chunk.css": "/WAGMIGOTCHI/static/css/1.c8806d17.chunk.css",
   "static/js/1.2b2d9c81.chunk.js": "/WAGMIGOTCHI/static/js/1.2b2d9c81.chunk.js",
   "static/js/1.2b2d9c81.chunk.js.map": "/WAGMIGOTCHI/static/js/1.2b2d9c81.chunk.js.map",
@@ -12,6 +12,6 @@
   "static/css/1.c8806d17.chunk.css.map": "/WAGMIGOTCHI/static/css/1.c8806d17.chunk.css.map",
   "static/css/main.9004dc0f.chunk.css.map": "/WAGMIGOTCHI/static/css/main.9004dc0f.chunk.css.map",
   "index.html": "/WAGMIGOTCHI/index.html",
-  "precache-manifest.2ef437ba88087a1db09479ebd2badb06.js": "/WAGMIGOTCHI/precache-manifest.2ef437ba88087a1db09479ebd2badb06.js",
+  "precache-manifest.2cf04d7de225ea66dacca36af7cf622a.js": "/WAGMIGOTCHI/precache-manifest.2cf04d7de225ea66dacca36af7cf622a.js",
   "service-worker.js": "/WAGMIGOTCHI/service-worker.js"
 }
